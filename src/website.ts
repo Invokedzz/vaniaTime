@@ -67,3 +67,5 @@ export class startServer {
     };
 
 };
+
+export default startServer;

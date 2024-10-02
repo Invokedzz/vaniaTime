@@ -1,4 +1,4 @@
-import { startServer } from './website';
+import startServer from './website';
 
 const gettingStarted = new startServer();
 

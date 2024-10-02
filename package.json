@@ -2,11 +2,11 @@
   "name": "vaniatime",
   "version": "1.0.0",
   "description": "A project to help new players into MetroidVania!",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js",
-    "dev": "nodemon index.js"
+    "start": "ts-node ./src/index.ts",
+    "dev": "ts-node ./src/index.ts"
   },
   "keywords": [],
   "author": "",
