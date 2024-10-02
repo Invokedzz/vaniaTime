@@ -52,11 +52,17 @@ export class startServer {
 
         application.use(express.static('public'));
 
-        application.use('/vania', router);
+    };
+
+    private routesMiddlewares (): void {
+
+        application.use('/', router);
 
     };
 
     public Listen (): void {
+
+        this.routesMiddlewares();
 
         this.expressLimiter();
 
