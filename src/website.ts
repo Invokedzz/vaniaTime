@@ -6,6 +6,8 @@ import { engine } from "express-handlebars";
 
 import path from "path";
 
+import { router } from './routes/routes';
+
 const application = express();
 
 const port = process.env.PORT || 3001;
@@ -49,6 +51,8 @@ export class startServer {
         application.use(express.urlencoded({ extended: true }));
 
         application.use(express.static('public'));
+
+        application.use('/vania', router);
 
     };
 
