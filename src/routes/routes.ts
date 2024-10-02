@@ -1,4 +1,6 @@
-import express, { Request, Response } from 'express';
+import express from 'express';
+
+import { homepage } from '../controllers/routesMiddlewares';
 
 const application = express();
 
@@ -6,7 +8,7 @@ export class routesServer {
 
     private getRoutes (): void {
 
-
+        application.get('/', homepage);
 
     };
 
@@ -20,7 +22,7 @@ export class routesServer {
 
         this.getRoutes();
 
-        this.postRoutes();
+    //    this.postRoutes();
 
     };
 

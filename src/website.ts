@@ -4,6 +4,8 @@ import { rateLimit } from 'express-rate-limit';
 
 import { engine } from "express-handlebars";
 
+import { routesServer } from './routes/routes';
+
 import path from "path";
 
 const application = express();
@@ -42,6 +44,14 @@ export class startServer {
 
     };
 
+    private gatherRoutes (): void {
+
+        const gettingStarted = new routesServer();
+
+        gettingStarted.receiveRoutes();
+
+    };
+
     private changeSettings (): void {
 
         application.use(express.json());
@@ -53,6 +63,8 @@ export class startServer {
     };
 
     public Listen (): void {
+
+        this.gatherRoutes();
 
         this.expressLimiter();
 
