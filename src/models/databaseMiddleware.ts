@@ -36,7 +36,7 @@ export async function registerPost (request: Request, response: Response): Promi
 
         const passwordHash = await bcrypt.hash(password, 10);
 
-        await database.query("INSERT INTO users (username, email, password) VALUES ($1, $2, $3)", [username, email, passwordHash]);
+        await database.query(`INSERT INTO metroidvania.users (username, email, password) VALUES ($1, $2, $3)`, [username, email, passwordHash]);
 
         response.send("We received your data");
 

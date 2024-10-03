@@ -68,9 +68,9 @@ export class startServer {
 
         this.expressLimiter();
 
-        this.routesMiddlewares();
-
         this.changeSettings();
+
+        this.routesMiddlewares();
 
         application.listen(port, (): void => {
 
