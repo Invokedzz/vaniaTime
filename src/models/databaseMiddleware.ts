@@ -34,11 +34,13 @@ export async function registerPost (request: Request, response: Response): Promi
 
     try {
 
+        const existingUser = await database.query(`SELECT * FROM metroidvania.users WHERE email = $1`, [email]);
+
+        if (existingUser.rows.length > 0) return;
+
         const passwordHash = await bcrypt.hash(password, 10);
 
         await database.query(`INSERT INTO metroidvania.users (username, email, password) VALUES ($1, $2, $3)`, [username, email, passwordHash]);
-
-        response.send("We received your data");
 
     } catch (error) {
 
@@ -57,6 +59,21 @@ export async function loginPost (request: Request, response: Response): Promise 
     const password: string = request.body.password;
 
     try {
+
+        const user = await database.query(`SELECT * FROM metroidvania.users WHERE email = $1`, [email]);
+
+        const rows = user.rows;
+
+        if (rows && await bcrypt.compare(password, rows[0].password)) {
+
+            const payload = {
+                id: rows[0].id,
+                username: rows[0].username
+            };
+
+            response.render('/',  payload);
+
+        };
 
     } catch (error) {
 

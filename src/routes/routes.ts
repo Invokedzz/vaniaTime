@@ -12,4 +12,6 @@ router.get('/login', loginPage);
 
 router.post('/registeruser', registerMethod);
 
+router.post('/loginuser', loginMethod);
+
 export { router };
