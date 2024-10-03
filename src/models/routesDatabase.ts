@@ -1,7 +1,8 @@
 import { Request, Response } from "express";
 
-import { registerPost, loginPost, homeInit, registerInit, loginInit } from "./databaseMiddleware";
-import { register } from "ts-node";
+import { registerPost, loginPost } from "./databaseMiddleware";
+
+import { homeInit, loginInit, registerInit } from "../controllers/routesControllers";
 
 export const homePage = (request: Request, response: Response): void => {
 

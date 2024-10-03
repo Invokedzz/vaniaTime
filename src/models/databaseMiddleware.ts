@@ -6,24 +6,6 @@ import bcrypt from "bcryptjs";
 
 import jwt from "jsonwebtoken";
 
-export function homeInit (request: Request, response: Response): void {
-
-    response.render("homepage");
-
-};
-
-export function registerInit (request: Request, response: Response): void {
-
-    response.render("registerpage");
-
-};
-
-export function loginInit (request: Request, response: Response): void {
-
-    response.render("loginpage");
-
-};
-
 export async function registerPost (request: Request, response: Response): Promise <void> {
 
     const username: string = request.body.username;
