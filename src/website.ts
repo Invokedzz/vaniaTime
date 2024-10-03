@@ -58,6 +58,10 @@ export class startServer {
 
         application.use('/', router);
 
+        application.use('/register', router);
+
+        application.use('/login', router);
+
     };
 
     public Listen (): void {
