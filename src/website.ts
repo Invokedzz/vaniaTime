@@ -8,6 +8,8 @@ import path from "path";
 
 import { router } from './routes/routes';
 
+import cors from "cors";
+
 const application = express();
 
 const port = process.env.PORT || 3001;
@@ -55,6 +57,8 @@ export class startServer {
     };
 
     private routesMiddlewares (): void {
+
+        application.use(cors());
 
         application.use('/', router);
 
