@@ -8,7 +8,19 @@ import jwt from "jsonwebtoken";
 
 export async function registerPost (request: Request, response: Response): Promise <void> {
 
+    const username: string = request.body.username;
+
+    const email: string = request.body.email;
+
+    const password: string = request.body.email;
+
     try {
+
+        const passwordHash = await bcrypt.hash(password, 10);
+
+        await database.query("INSERT INTO users (username, email, password) VALUES ($1, $2, $3) RETURNING *", [username, email, passwordHash]);
+
+        response.send("We received your data");
 
     } catch (error) {
 
@@ -21,6 +33,10 @@ export async function registerPost (request: Request, response: Response): Promi
 };
 
 export async function loginPost (request: Request, response: Response): Promise <void> {
+
+    const email: string = request.body.email;
+
+    const password: string = request.body.password;
 
     try {
 

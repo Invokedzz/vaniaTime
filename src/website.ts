@@ -68,9 +68,17 @@ export class startServer {
 
     };
 
+    private middlewarePost (): void {
+
+        application.use('/registerpost', router);
+
+    };
+
     public Listen (): void {
 
         this.routesMiddlewares();
+
+        this.middlewarePost();
 
         this.expressLimiter();
 
