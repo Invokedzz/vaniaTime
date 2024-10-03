@@ -12,6 +12,10 @@ export async function registerPost (request: Request, response: Response): Promi
 
     } catch (error) {
 
+        console.error("Something went wrong", error);
+
+        throw new Error("Try again later");
+
     };
 
 };
@@ -21,6 +25,10 @@ export async function loginPost (request: Request, response: Response): Promise 
     try {
 
     } catch (error) {
+
+        console.error("Something went wrong", error);
+        
+        throw new Error("Try again later");
 
     };
 

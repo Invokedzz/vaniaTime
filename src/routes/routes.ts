@@ -1,15 +1,15 @@
 import { Router } from 'express';
 
-import { homepage, registerpage, loginpage } from '../controllers/routesMiddlewares';
+import { homePage, registerPage, loginPage } from '../controllers/routesMiddlewares';
 
 import { registerMethod, loginMethod } from '../models/routesDatabase';
 
 const router = Router();
 
-router.get('/', homepage);
+router.get('/', homePage);
 
-router.get('/register', registerpage);
+router.get('/register', registerPage);
 
-router.get('/login', loginpage);
+router.get('/login', loginPage);
 
 export { router };
