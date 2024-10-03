@@ -1,8 +1,6 @@
 import { Router } from 'express';
 
-import { homePage, registerPage, loginPage } from '../controllers/routesMiddlewares';
-
-import { registerMethod, loginMethod } from '../models/routesDatabase';
+import { registerMethod, loginMethod, homePage, registerPage, loginPage } from '../models/routesDatabase';
 
 const router = Router();
 

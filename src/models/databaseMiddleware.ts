@@ -6,6 +6,24 @@ import bcrypt from "bcryptjs";
 
 import jwt from "jsonwebtoken";
 
+export function homeInit (request: Request, response: Response): void {
+
+    response.render("homepage");
+
+};
+
+export function registerInit (request: Request, response: Response): void {
+
+    response.render("registerpage");
+
+};
+
+export function loginInit (request: Request, response: Response): void {
+
+    response.render("loginpage");
+
+};
+
 export async function registerPost (request: Request, response: Response): Promise <void> {
 
     const username: string = request.body.username;
@@ -18,7 +36,7 @@ export async function registerPost (request: Request, response: Response): Promi
 
         const passwordHash = await bcrypt.hash(password, 10);
 
-        await database.query("INSERT INTO users (username, email, password) VALUES ($1, $2, $3) RETURNING *", [username, email, passwordHash]);
+        await database.query("INSERT INTO users (username, email, password) VALUES ($1, $2, $3)", [username, email, passwordHash]);
 
         response.send("We received your data");
 
