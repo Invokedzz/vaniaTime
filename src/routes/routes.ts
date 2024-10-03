@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import { homepage } from '../models/routesMiddlewares';
+import { homepage } from '../controllers/routesMiddlewares';
 
 const router = Router();
 
