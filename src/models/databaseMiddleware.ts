@@ -6,6 +6,8 @@ import bcrypt from "bcryptjs";
 
 import jwt from "jsonwebtoken";
 
+import { validateRegister, validateLogin } from "../controllers/validatorsHeaders";
+
 export async function registerPost (request: Request, response: Response): Promise <void> {
 
     const username: string = request.body.username;
@@ -13,6 +15,8 @@ export async function registerPost (request: Request, response: Response): Promi
     const email: string = request.body.email;
 
     const password: string = request.body.email;
+
+    validateRegister(username, email, password);
 
     try {
 
