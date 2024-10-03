@@ -1,5 +1,7 @@
 import { Pool } from "pg";
 
+// host.docker.internal
+
 import dotenv from "dotenv";
 
 dotenv.config({
