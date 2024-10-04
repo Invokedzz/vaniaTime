@@ -2,7 +2,11 @@ import { startServer } from './website';
 
 import { security } from './controllers/validators';
 
-//import { loginValidate, registerValidate } from './controllers/validatorsInputs';
+import { loginValidate, registerValidate } from './controllers/validatorsInputs';
+
+loginValidate();
+
+registerValidate();
 
 security();
 
