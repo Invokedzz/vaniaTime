@@ -26,3 +26,27 @@ export function validateLogin (
     if (validator.isEmpty(password) && password.length < 3) return;
 
 };
+
+export function validateTopic (
+    
+    title: string,
+    author: string,
+    message: string,
+
+): void {
+
+
+
+};
+
+export function validateComments (
+    
+    title: string,
+    author: string,
+    message: string,
+
+): void {
+
+
+
+};
