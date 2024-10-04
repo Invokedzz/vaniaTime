@@ -41,7 +41,7 @@ export function topicControl (
     author: string,
     message: string,
 
-): void {
+): string [] {
 
     const errors: string [] = [];
 
@@ -51,7 +51,7 @@ export function topicControl (
 
     if (message.length < 3 || message.length > 255) errors.push("Invalid message. Try again. Minimum: 3 characters, maximum: 255 characters.");
 
-    if (errors.length > 0) return;
+    return errors;
 
 };
 
@@ -61,7 +61,7 @@ export function commentControl (
     author: string,
     message: string,
     
-): void {
+): string [] {
 
     const errors: string [] = [];
 
@@ -71,6 +71,6 @@ export function commentControl (
 
     if (message.length < 3 || message.length > 255) errors.push("Invalid message. Try again. Minimum: 3 characters, maximum: 255 characters.");
 
-    if (errors.length > 0) return;
+    return errors;
 
 };
