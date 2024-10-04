@@ -28,6 +28,8 @@ export async function registerPost (request: Request, response: Response): Promi
 
         await database.query(`INSERT INTO metroidvania.users (username, email, password) VALUES ($1, $2, $3)`, [username, email, passwordHash]);
 
+        response.redirect('/login');
+
     } catch (error) {
 
         console.error("Something went wrong", error);
@@ -44,22 +46,28 @@ export async function loginPost (request: Request, response: Response): Promise 
 
     const password: string = request.body.password;
 
+   // validateLogin(email, password);
+
     try {
 
-        const user = await database.query(`SELECT * FROM metroidvania.users WHERE email = $1`, [email]);
+        const existingUser = await database.query(`SELECT * FROM metroidvania.users WHERE email = $1`, [email]);
 
-        const rows = user.rows;
+        if (existingUser.rows.length === 0) {
+            response.send("Invalid email or password");
+            return;
+        }
 
-        if (rows && await bcrypt.compare(password, rows[0].password)) {
+        const user = existingUser.rows[0];
 
-            const payload = {
-                id: rows[0].id,
-                username: rows[0].username
-            };
+        const validPassword = await bcrypt.compare(password, user.password);
+        if (!validPassword) {
+            response.send("Invalid email or password"); 
+            return; 
+        }
 
-            response.render('/',  payload);
+        const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET as string, { expiresIn: "1h" });
 
-        };
+        response.send(`Login successful. Your token is: ${token}`);
 
     } catch (error) {
 
