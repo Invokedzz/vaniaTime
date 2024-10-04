@@ -388,8 +388,100 @@ describe("validateLogin test", (): void => {
 
 describe("validateTopic test", (): void => {
 
+    it ("Should return message error", (): void => {
+
+        const title: string = "something";
+
+        const author: string = "someone";
+
+        const message: string = "";
+
+        const returnErrors = validateTopic(title, author, message);
+
+        expect(returnErrors).toContain("Invalid message. Try again.");
+
+    });
+
+    it ("Should return author and title errors", (): void => {
+
+        const title: string = "";
+
+        const author: string = "";
+
+        const message: string = "something";
+
+        const returnErrors = validateTopic(title, author, message);
+
+        expect(returnErrors).toContain("Invalid informations. Try again.");
+
+    });
+
+    it ("Should not return anything", (): void => {
+
+        const title: string = "something";
+
+        const author: string = "someone";
+
+        const message: string = "something";
+
+        const ourSpy = jest.spyOn(console, 'log');
+
+        validateTopic(title, author, message);
+
+        expect(ourSpy).not.toHaveBeenCalled();
+
+        ourSpy.mockRestore();
+
+    });
+
 });
 
 describe("validateComments test", (): void => {
+
+    it ("Should return message error", (): void => {
+
+        const title: string = "something";
+
+        const author: string = "someone";
+
+        const message: string = "";
+
+        const returnErrors = validateTopic(title, author, message);
+
+        expect(returnErrors).toContain("Invalid message. Try again.");
+
+    });
+
+    it ("Should return author and title errors", (): void => {
+
+        const title: string = "";
+
+        const author: string = "";
+
+        const message: string = "something";
+
+        const returnErrors = validateTopic(title, author, message);
+
+        expect(returnErrors).toContain("Invalid informations. Try again.");
+
+    });
+
+    it ("Should not return anything", (): void => {
+
+        const title: string = "something";
+
+        const author: string = "someone";
+
+        const message: string = "something";
+
+        const ourSpy = jest.spyOn(console, 'log');
+
+        validateTopic(title, author, message);
+
+        expect(ourSpy).not.toHaveBeenCalled();
+
+        ourSpy.mockRestore();
+
+    });
 
 });
