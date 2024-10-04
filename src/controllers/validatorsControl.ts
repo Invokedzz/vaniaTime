@@ -43,7 +43,15 @@ export function topicControl (
 
 ): void {
 
+    const errors: string [] = [];
 
+    if (title.length < 4 || title.length > 30) errors.push("Invalid title. Try again. Minimum: 4 characters, maximum: 30 characters.");
+
+    if (author.length < 1 || author.length > 30) errors.push("Invalid author. Try again. Minimum: 1 character, maximum: 30 characters.");
+
+    if (message.length < 3 || message.length > 255) errors.push("Invalid message. Try again. Minimum: 3 characters, maximum: 255 characters.");
+
+    if (errors.length > 0) return;
 
 };
 
@@ -55,6 +63,14 @@ export function commentControl (
     
 ): void {
 
+    const errors: string [] = [];
 
+    if (title.length < 4 || title.length > 30) errors.push("Invalid title. Try again. Minimum: 4 characters, maximum: 30 characters.");
+
+    if (author.length < 1 || author.length > 30) errors.push("Invalid author. Try again. Minimum: 1 character, maximum: 30 characters.");
+
+    if (message.length < 3 || message.length > 255) errors.push("Invalid message. Try again. Minimum: 3 characters, maximum: 255 characters.");
+
+    if (errors.length > 0) return;
 
 };

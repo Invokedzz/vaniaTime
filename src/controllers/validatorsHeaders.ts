@@ -8,9 +8,13 @@ export function validateRegister (
 
 ): void {
 
-    if (!validator.isEmail(email)) return;
+    const errors: string [] = [];
 
-    if (validator.isEmpty(password) && validator.isEmpty(username)) return;
+    if (!validator.isEmail(email)) errors.push("Invalid e-mail. Try again.");
+
+    if (validator.isEmpty(password) && validator.isEmpty(username)) errors.push("Invalid informations. Try again.");
+
+    if (errors.length > 0) return;
 
 };
 
@@ -21,9 +25,13 @@ export function validateLogin (
 
 ): void {
 
-    if (!validator.isEmail(email)) return;
+    const errors: string [] = [];
 
-    if (validator.isEmpty(password) && password.length < 3) return;
+    if (!validator.isEmail(email)) errors.push("Invalid e-mail. Try again.");
+
+    if (validator.isEmpty(password) && password.length < 3) errors.push("Invalid password. Try again.");
+
+    if (errors.length > 0) return;
 
 };
 
