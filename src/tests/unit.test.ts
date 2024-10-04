@@ -2,6 +2,8 @@ import { Request, Response } from "express";
 
 import { homeInit, loginInit, registerInit } from "../controllers/routesControllers";
 
+import { validateRegister, validateLogin, validateComments, validateTopic } from "../controllers/validatorsHeaders";
+
 import { loginControl, registerControl, topicControl, commentControl } from "../controllers/validatorsControl";
 
 describe ("Handling with the renders", (): void => {
@@ -287,5 +289,107 @@ describe("commentControl test", (): void => {
         expect(returnErrors).toContain("Invalid message. Try again. Minimum: 3 characters, maximum: 255 characters.");
 
     });
+
+});
+
+describe ("Handling validate register", (): void => {
+
+    it ("Should return e-mail errors", (): void => {
+
+        const username: string = "testing";
+
+        const email: string = "";
+
+        const password: string = "validpassword";
+
+        const returnErrors = validateRegister(username, email, password);
+
+        expect(returnErrors).toContain("Invalid e-mail. Try again.");
+
+    });
+
+    it ("Should handle username and password errors", (): void => {
+
+        const username: string = '';
+
+        const email: string = 'testing@gmail.com';
+
+        const password: string = '';
+
+        const returnErrors = validateRegister(username, email, password);
+
+        expect(returnErrors).toContain("Invalid informations. Try again.");
+
+    });
+
+    it ("Should not return anything", (): void => {
+
+        const username: string = "testing";
+
+        const email: string = 'testing@gmail.com';
+
+        const password: string = "validpassword";
+
+        const ourSpy = jest.spyOn(console, 'log');
+
+        validateRegister(username, email, password);
+
+        expect(ourSpy).not.toHaveBeenCalled();
+
+        ourSpy.mockRestore();
+
+    });
+
+});
+
+describe("validateLogin test", (): void => {
+
+    it ("Should return e-mail error", (): void => {
+
+        const email: string = "";
+
+        const password: string = "validpassword";
+
+        const returnErrors = validateLogin(email, password);
+
+        expect(returnErrors).toContain("Invalid e-mail. Try again.");
+
+    });
+
+    it ("Should return password error", (): void => {
+
+        const email: string = 'testing@gmail.com';
+
+        const password: string = "";
+
+        const returnErrors = validateLogin(email, password);
+
+        expect(returnErrors).toContain("Invalid password. Try again.");
+
+    });
+
+    it ("Should not return anything", (): void => {
+
+        const email: string = "testing@gmail.com";
+
+        const password: string = "validpassword";
+
+        const ourSpy = jest.spyOn(console, 'log');
+
+        validateLogin(email, password);
+
+        expect(ourSpy).not.toHaveBeenCalled();
+
+        ourSpy.mockRestore();
+
+    });
+
+});
+
+describe("validateTopic test", (): void => {
+
+});
+
+describe("validateComments test", (): void => {
 
 });

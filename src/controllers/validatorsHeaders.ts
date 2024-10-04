@@ -6,7 +6,7 @@ export function validateRegister (
     email: string,
     password: string
 
-): void {
+): string [] {
 
     const errors: string [] = [];
 
@@ -14,7 +14,7 @@ export function validateRegister (
 
     if (validator.isEmpty(password) && validator.isEmpty(username)) errors.push("Invalid informations. Try again.");
 
-    if (errors.length > 0) return;
+    return errors;
 
 };
 
@@ -23,7 +23,7 @@ export function validateLogin (
     email: string,
     password: string
 
-): void {
+): string [] {
 
     const errors: string [] = [];
 
@@ -31,7 +31,7 @@ export function validateLogin (
 
     if (validator.isEmpty(password) && password.length < 3) errors.push("Invalid password. Try again.");
 
-    if (errors.length > 0) return;
+    return errors;
 
 };
 
@@ -41,7 +41,7 @@ export function validateTopic (
     author: string,
     message: string,
 
-): void {
+): string [] {
 
     const errors: string [] = [];
 
@@ -49,7 +49,7 @@ export function validateTopic (
 
     if (validator.isEmpty(message)) errors.push("Invalid message. Try again.");
 
-    if (errors.length > 0) return;
+    return errors;
 
 };
 
@@ -59,7 +59,7 @@ export function validateComments (
     author: string,
     message: string,
 
-): void {
+): string [] {
 
     const errors: string [] = [];
 
@@ -67,6 +67,6 @@ export function validateComments (
 
     if (validator.isEmpty(message)) errors.push("Invalid message. Try again.");
 
-    if (errors.length > 0) return;
+    return errors;
 
 };
