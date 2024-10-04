@@ -4,7 +4,7 @@ export function registerControl (
     email: string,
     password: string,
 
-): void {
+): string [] {
 
     const errors: string [] = [];
 
@@ -14,7 +14,7 @@ export function registerControl (
 
     if (password.length < 3 || password.length > 255) errors.push("Invalid password. Try again.");
 
-    if (errors.length > 0) return;
+    return errors;
 
 };
 
@@ -23,7 +23,7 @@ export function loginControl (
     email: string,
     password: string,
 
-): void {
+): string [] {
 
     const errors: string [] = [];
 
@@ -31,7 +31,7 @@ export function loginControl (
 
     if (password.length < 3 || password.length > 255) errors.push("Invalid password. Try again.");
 
-    if (errors.length > 0) return;
+    return errors;
 
 };
 
