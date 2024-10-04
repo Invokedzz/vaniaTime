@@ -35,7 +35,13 @@ export function validateTopic (
 
 ): void {
 
+    const errors: string [] = [];
 
+    if (validator.isEmpty(title) && validator.isEmpty(author)) errors.push("Invalid informations. Try again.");
+
+    if (validator.isEmpty(message)) errors.push("Invalid message. Try again.");
+
+    if (errors.length > 0) return;
 
 };
 
@@ -47,6 +53,12 @@ export function validateComments (
 
 ): void {
 
+    const errors: string [] = [];
 
+    if (validator.isEmpty(title) && validator.isEmpty(author)) errors.push("Invalid informations. Try again.");
+
+    if (validator.isEmpty(message)) errors.push("Invalid message. Try again.");
+
+    if (errors.length > 0) return;
 
 };

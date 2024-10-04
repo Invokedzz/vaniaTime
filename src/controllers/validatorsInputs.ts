@@ -4,7 +4,7 @@ export function registerValidate (): void {
 
     body("username")
     .isString()
-    .isLength({min: 1, max: 30})
+    .isLength({ min: 1, max: 30 })
     .withMessage("Invalid username. Try again. Minimum: 1 character, maximum: 30 characters.");
     
     body("email")
