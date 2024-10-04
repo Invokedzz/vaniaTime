@@ -228,4 +228,64 @@ describe("topicControl test", (): void => {
 
 describe("commentControl test", (): void => {
 
+    it ("Should not return anything", (): void => {
+
+        const title: string = "something";
+
+        const author: string = "someone";
+
+        const message: string = "something";
+
+        const ourSpy = jest.spyOn(console, 'log');
+
+        topicControl(title, author, message);
+
+        expect(ourSpy).not.toHaveBeenCalled();
+
+        ourSpy.mockRestore();
+
+    });
+
+    it ("Should return title error", (): void => {
+
+        const title: string = '';
+
+        const author: string = "someone";
+
+        const message: string = "something";
+
+        const returnErrors = topicControl(title, author, message);
+
+        expect(returnErrors).toContain("Invalid title. Try again. Minimum: 4 characters, maximum: 30 characters.");
+
+    });
+
+    it ("Should return author error", (): void => {
+
+        const title: string = "something";
+
+        const author: string = '';
+
+        const message: string = "something";
+
+        const returnErrors = topicControl(title, author, message);
+
+        expect(returnErrors).toContain("Invalid author. Try again. Minimum: 1 character, maximum: 30 characters.");
+
+    });
+
+    it ("Should return message error", (): void => {
+
+        const title: string = "something";
+
+        const author: string = "someone";
+
+        const message: string = '';
+
+        const returnErrors = topicControl(title, author, message);
+
+        expect(returnErrors).toContain("Invalid message. Try again. Minimum: 3 characters, maximum: 255 characters.");
+
+    });
+
 });
