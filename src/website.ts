@@ -9,6 +9,7 @@ import path from "path";
 import { router } from './routes/routes';
 
 import cors from "cors";
+import cookieParser from 'cookie-parser';
 
 const application = express();
 
@@ -53,6 +54,8 @@ export class startServer {
         application.use(express.urlencoded({ extended: true }));
 
         application.use(express.static('public'));
+        
+        application.use(cookieParser());
 
     };
 

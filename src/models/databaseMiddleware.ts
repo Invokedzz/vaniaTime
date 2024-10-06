@@ -46,7 +46,7 @@ export async function loginPost (request: Request, response: Response): Promise 
 
     const password: string = request.body.password;
 
-   // validateLogin(email, password);
+    validateLogin(email, password);
 
     try {
 
@@ -56,7 +56,9 @@ export async function loginPost (request: Request, response: Response): Promise 
 
         if (user && await bcrypt.compare(password, user.password)) {
 
-            jwt.sign({ id: user.id }, 'secret', { expiresIn: '1h' });
+            const token = jwt.sign({ id: user.id }, 'secret', { expiresIn: '1h' });
+
+            response.cookie('token', token, { httpOnly: true }); 
 
             response.send("They match!");
 
