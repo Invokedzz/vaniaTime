@@ -52,22 +52,16 @@ export async function loginPost (request: Request, response: Response): Promise 
 
         const existingUser = await database.query(`SELECT * FROM metroidvania.users WHERE email = $1`, [email]);
 
-        if (existingUser.rows.length === 0) {
-            response.send("Invalid email or password");
-            return;
-        }
-
         const user = existingUser.rows[0];
 
-        const validPassword = await bcrypt.compare(password, user.password);
-        if (!validPassword) {
-            response.send("Invalid email or password"); 
-            return; 
-        }
+        if (user && await bcrypt.compare(password, user.password)) {
 
-        const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET as string, { expiresIn: "1h" });
+            jwt.sign({ id: user.id }, process.env.JWT_SECRET as string);
 
-        response.send(`Login successful. Your token is: ${token}`);
+            response.send("They match!");
+
+        };
+
 
     } catch (error) {
 
