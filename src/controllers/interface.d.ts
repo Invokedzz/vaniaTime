@@ -1,4 +1,4 @@
-import { Username } from '../controllers/verifyToken';
+import { Username } from './verifyToken';
 
 declare global {
     namespace Express {
