@@ -178,3 +178,7 @@ input[type="submit"] {
 .register-link a:hover {
     text-decoration: underline;
 }
+
+.errorP {
+    color: rgb(225, 12, 12);
+}
