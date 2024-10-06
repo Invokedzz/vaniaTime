@@ -14,7 +14,7 @@ export async function registerPost (request: Request, response: Response): Promi
 
     const email: string = request.body.email;
 
-    const password: string = request.body.email;
+    const password: string = request.body.password;
 
     validateRegister(username, email, password);
 
@@ -56,11 +56,13 @@ export async function loginPost (request: Request, response: Response): Promise 
 
         if (user && await bcrypt.compare(password, user.password)) {
 
-            jwt.sign({ id: user.id }, process.env.JWT_SECRET as string);
+            jwt.sign({ id: user.id }, 'secret', { expiresIn: '1h' });
 
             response.send("They match!");
 
         };
+
+        response.render('sendError');
 
 
     } catch (error) {
