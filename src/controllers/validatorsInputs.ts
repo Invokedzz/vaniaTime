@@ -72,3 +72,18 @@ export function commentValidate (): void {
     .withMessage("Invalid message. Try again. Minimum: 3 characters, maximum: 255 characters.");
 
 };
+
+export function updateValidate (): void {
+
+    body("email")
+    .isString()
+    .isEmail()
+    .isLength({ min: 1, max: 255 })
+    .withMessage("Invalid e-mail. Try again.");
+
+    body("discord")
+    .isString()
+    .isLength({ min: 1, max: 40 })
+    .withMessage("Invalid discord account. Try again.");
+
+};

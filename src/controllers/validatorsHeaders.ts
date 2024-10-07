@@ -70,3 +70,20 @@ export function validateComments (
     return errors;
 
 };
+
+export function validUpdate (
+    
+    email: string,
+    discordAccount: string
+
+): string [] {
+
+    const errors: string [] = [];
+    
+    if (!validator.isEmail(email)) errors.push("Invalid e-mail. Try again.");
+
+    if (validator.isEmpty(discordAccount)) errors.push("Invalid discord account. Try again.");
+
+    return errors;
+
+}

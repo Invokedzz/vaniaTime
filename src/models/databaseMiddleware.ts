@@ -108,3 +108,17 @@ export async function userProfile (request: Request, response: Response): Promis
     };
     
 };
+
+export async function updateProfile (request: Request, response: Response): Promise <void> {
+
+    try {
+
+    } catch (error) {
+
+        console.error("Something went wrong", error);
+
+        throw new Error("Try again later");
+
+    };
+
+};
