@@ -73,8 +73,8 @@ export function validateComments (
 
 export function validUpdate (
     
+    username: string,
     email: string,
-    discordAccount: string
 
 ): string [] {
 
@@ -82,7 +82,7 @@ export function validUpdate (
     
     if (!validator.isEmail(email)) errors.push("Invalid e-mail. Try again.");
 
-    if (validator.isEmpty(discordAccount)) errors.push("Invalid discord account. Try again.");
+    if (validator.isEmpty(username)) errors.push("Invalid account. Try again.");
 
     return errors;
 

@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
 
-import { homeInit, loginInit, registerInit, createGuides, viewGuides } from "../controllers/routesControllers";
+import { homeInit, loginInit, registerInit, createGuides, viewGuides, viewGuidesLogin } from "../controllers/routesControllers";
 
-import { validateRegister, validateLogin, validateComments, validateTopic } from "../controllers/validatorsHeaders";
+import { validateRegister, validateLogin, validateComments, validateTopic, validUpdate } from "../controllers/validatorsHeaders";
 
 import { loginControl, registerControl, topicControl, commentControl } from "../controllers/validatorsControl";
 
@@ -67,6 +67,14 @@ describe ("Handling with the renders", (): void => {
         viewGuides(Request as Request, Response as Response);
 
         expect(Response.render).toHaveBeenCalledWith("viewGuides");
+
+    });
+
+    it ("Should handle the responses correctly // viewGuidesLogin", (): void => {
+
+        viewGuidesLogin(Request as Request, Response as Response);
+
+        expect(Response.render).toHaveBeenCalledWith("viewGuideslogin");
 
     });
 
@@ -574,6 +582,50 @@ describe ("Testing commentControl", (): void => {
         expect(errorMessage).toContain("Invalid message. Try again. Minimum: 3 characters, maximum: 255 characters.");
 
         ourSpy.mockRestore();
+
+    });
+
+});
+
+describe ("Validate user update function", (): void => {
+
+    it ("Should not return anything", (): void => {
+
+        const username: string = "testing";
+
+        const email: string = "testing@gmail.com";
+
+        const ourSpy = jest.spyOn(console, 'log');
+
+        validUpdate(username, email);
+
+        expect(ourSpy).not.toHaveBeenCalled();
+
+        ourSpy.mockRestore();
+
+    });
+
+    it ("Should return email error", (): void => {
+
+        const username: string = "testing";
+
+        const email: string = '';
+
+        const errorMessage = validUpdate(username, email);
+
+        expect(errorMessage).toContain("Invalid e-mail. Try again.");
+
+    });
+
+    it ("Should return username error", (): void => {
+
+        const username: string = '';
+
+        const email: string = "testing@gmail.com";
+
+        const errorMessage = validUpdate(username, email);
+
+        expect(errorMessage).toContain("Invalid account. Try again.");
 
     });
 
