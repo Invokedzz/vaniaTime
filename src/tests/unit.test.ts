@@ -462,7 +462,7 @@ describe("validateComments test", (): void => {
 
         const message: string = "";
 
-        const returnErrors = validateTopic(title, author, message);
+        const returnErrors = validateComments(title, author, message);
 
         expect(returnErrors).toContain("Invalid message. Try again.");
 
@@ -476,7 +476,7 @@ describe("validateComments test", (): void => {
 
         const message: string = "something";
 
-        const returnErrors = validateTopic(title, author, message);
+        const returnErrors = validateComments(title, author, message);
 
         expect(returnErrors).toContain("Invalid informations. Try again.");
 
@@ -492,9 +492,86 @@ describe("validateComments test", (): void => {
 
         const ourSpy = jest.spyOn(console, 'log');
 
-        validateTopic(title, author, message);
+        validateComments(title, author, message);
 
         expect(ourSpy).not.toHaveBeenCalled();
+
+        ourSpy.mockRestore();
+
+    });
+
+});
+
+describe ("Testing commentControl", (): void => {
+
+
+    it ("Should not return anything", (): void => {
+
+        const title: string = "something";
+
+        const author: string = "someone";
+    
+        const message: string = "something";
+    
+        const ourSpy = jest.spyOn(console, 'log');
+
+        commentControl(title, author, message);
+
+        expect(ourSpy).not.toHaveBeenCalled();
+
+        ourSpy.mockRestore();
+
+    });
+
+    it ("Should return title error", (): void => {
+
+        const title: string = '';
+
+        const author: string = "someone";
+
+        const message: string = "something";
+
+        const ourSpy = jest.spyOn(console, 'log');
+
+        const errorMessage = commentControl(title, author, message);
+
+        expect(errorMessage).toContain("Invalid title. Try again. Minimum: 4 characters, maximum: 30 characters.");
+
+        ourSpy.mockRestore();
+
+    });
+
+    it ("Should return author error", (): void => {
+
+        const title: string = "something";
+
+        const author: string = '';
+
+        const message: string = "something";
+
+        const ourSpy = jest.spyOn(console, 'log');
+
+        const errorMessage = commentControl(title, author, message);
+
+        expect(errorMessage).toContain("Invalid author. Try again. Minimum: 1 character, maximum: 30 characters.");
+
+        ourSpy.mockRestore();
+
+    });
+
+    it ("Should return message error", (): void => {
+
+        const title: string = "something";
+
+        const author: string = "someone";
+
+        const message: string = '';
+
+        const ourSpy = jest.spyOn(console, 'log');
+
+        const errorMessage = commentControl(title, author, message);
+
+        expect(errorMessage).toContain("Invalid message. Try again. Minimum: 3 characters, maximum: 255 characters.");
 
         ourSpy.mockRestore();
 
