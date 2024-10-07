@@ -129,7 +129,7 @@ ul a:hover::after {
 
 h2 {
     color: #001223; 
-    margin-bottom: 20px;
+    margin-bottom: 40px;
 }
 
 .form-group {
@@ -138,14 +138,14 @@ h2 {
 
 label {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 2px;
     color: #001122;
 }
 
 input[type="text"],
 input[type="password"],
 input[type="email"] {
-    width: 93%;
+    width: 100%;
     padding: 10px;
     border: 1px solid #ccd6e0;
     border-radius: 4px;
@@ -181,4 +181,22 @@ input[type="submit"] {
 
 .errorP {
     color: rgb(225, 12, 12);
+}
+
+.login-topic {
+    margin: auto;
+    margin-top: 6%;
+    background-color: #ffffff;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 50px;
+    max-width: 700px;
+    width: 100%;
+}
+
+.form-topic {
+    margin-bottom: 30px;
 }
