@@ -60,7 +60,7 @@ export async function loginPost (request: Request, response: Response): Promise 
 
             response.cookie('token', token, { httpOnly: true }); 
 
-            response.render("They match!", { username: user.username });
+            response.render("userLogin", { username: user.username });
 
         };
 
