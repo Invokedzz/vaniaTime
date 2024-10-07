@@ -8,8 +8,6 @@ import jwt from "jsonwebtoken";
 
 import { validateRegister, validateLogin } from "../controllers/validatorsHeaders";
 
-import { verifyToken } from "../controllers/verifyToken";
-
 export async function registerPost (request: Request, response: Response): Promise <void> {
 
     const username: string = request.body.username;
@@ -62,7 +60,7 @@ export async function loginPost (request: Request, response: Response): Promise 
 
             response.cookie('token', token, { httpOnly: true }); 
 
-            response.render("They match!", { user: request.user});
+            response.render("They match!", { username: request.username});
 
         };
 

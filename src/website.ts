@@ -9,6 +9,7 @@ import path from "path";
 import { router } from './routes/routes';
 
 import cors from "cors";
+
 import cookieParser from 'cookie-parser';
 
 const application = express();

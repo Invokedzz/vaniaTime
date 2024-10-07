@@ -1,8 +1,9 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 
-export interface Username {
+export type Username = {
 
+    username?: string;
     email: string;
     password: string;
 
@@ -16,7 +17,7 @@ export function verifyToken (request: Request, response: Response, next: NextFun
 
         const user: Username = jwt.verify(token, 'secret') as Username;
 
-        request.user = user;
+        request.username = user;
 
         next();
 
