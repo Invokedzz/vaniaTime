@@ -8,6 +8,8 @@ import jwt from "jsonwebtoken";
 
 import { validateRegister, validateLogin } from "../controllers/validatorsHeaders";
 
+import { Username } from "../controllers/verifyToken";
+
 export async function registerPost (request: Request, response: Response): Promise <void> {
 
     const username: string = request.body.username;
@@ -71,6 +73,30 @@ export async function loginPost (request: Request, response: Response): Promise 
 
         console.error("Something went wrong", error);
         
+        throw new Error("Try again later");
+
+    };
+
+};
+
+export async function userProfile (request: Request, response: Response): Promise <void> {
+
+    try {
+
+        const token = request.cookies.token;
+
+        if (token) {
+
+            const user: Username = jwt.verify(token, 'secret') as Username;
+
+            response.render("userProfile", { username: user.username });
+
+        };
+
+    } catch (error) {
+
+        console.error("Something went wrong", error);
+
         throw new Error("Try again later");
 
     };

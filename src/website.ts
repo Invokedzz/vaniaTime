@@ -1,6 +1,6 @@
 import express from 'express';
 
-import { rateLimit } from 'express-rate-limit';
+import rateLimit, { RateLimit } from 'express-rate-limit';
 
 import { engine } from "express-handlebars";
 
@@ -38,9 +38,9 @@ export class startServer {
 
             max: 100,
 
-            standardHeaders: true,
+        //    standardHeaders: true,
 
-            legacyHeaders: false,
+        //    legacyHeaders: false,
 
         });
 
