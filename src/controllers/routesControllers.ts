@@ -2,19 +2,19 @@ import { Request, Response } from "express";
 
 export function homeInit (request: Request, response: Response): void {
 
-    response.render("homepage");
+    response.render("homePage");
 
 };
 
 export function registerInit (request: Request, response: Response): void {
 
-    response.render("registerpage");
+    response.render("registerPage");
 
 };
 
 export function loginInit (request: Request, response: Response): void {
 
-    response.render("loginpage");
+    response.render("loginPage");
 
 };
 
