@@ -85,12 +85,18 @@ export async function userProfile (request: Request, response: Response): Promis
 
         const token = request.cookies.token;
 
-        if (token) {
+        const user: Username = jwt.verify(token, 'secret') as Username;
 
-            const user: Username = jwt.verify(token, 'secret') as Username;
+        const userInfo = await database.query(`SELECT * FROM metroidvania.users WHERE id = $1`, [user.id]);
+        
+        if (userInfo.rows.length > 0) {
 
-            response.render("userProfile", { username: user.username });
-
+            const userDetails = userInfo.rows[0];
+            response.render("userProfile", { 
+                username: userDetails.username, 
+                email: userDetails.email 
+            });
+            
         };
 
     } catch (error) {
@@ -100,5 +106,5 @@ export async function userProfile (request: Request, response: Response): Promis
         throw new Error("Try again later");
 
     };
-
+    
 };

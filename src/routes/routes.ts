@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import { registerMethod, loginMethod, homePage, registerPage, loginPage, viewMethod, createMethod, viewMethodLogin } from '../models/routesDatabase';
+import { registerMethod, loginMethod, homePage, registerPage, loginPage, viewMethod, createMethod, viewMethodLogin, methodProfile } from '../models/routesDatabase';
 
 const router = Router();
 
@@ -15,6 +15,8 @@ router.get('/viewGuides', viewMethod);
 router.get('/viewGuides/login', viewMethodLogin);
 
 router.get('/createGuide', createMethod);
+
+router.get('/profile', methodProfile);
 
 router.post('/registeruser', registerMethod);
 

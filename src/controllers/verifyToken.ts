@@ -4,6 +4,7 @@ import jwt from 'jsonwebtoken';
 
 export type Username = {
 
+    id: number;
     username?: string;
     email: string;
     password: string;
