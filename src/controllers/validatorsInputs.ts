@@ -81,9 +81,9 @@ export function updateValidate (): void {
     .isLength({ min: 1, max: 255 })
     .withMessage("Invalid e-mail. Try again.");
 
-    body("discord")
+    body("username")
     .isString()
     .isLength({ min: 1, max: 40 })
-    .withMessage("Invalid discord account. Try again.");
+    .withMessage("Invalid account. Try again.");
 
 };

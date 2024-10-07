@@ -111,7 +111,7 @@ export async function userProfile (request: Request, response: Response): Promis
 
 export async function updateProfile (request: Request, response: Response): Promise <void> {
 
-    /*const username: string = request.body.username;
+    const username: string = request.body.username;
 
     const email: string = request.body.email;
     
@@ -123,7 +123,7 @@ export async function updateProfile (request: Request, response: Response): Prom
 
         await database.query(`UPDATE metroidvania.users SET username = $1, email = $2 WHERE id = $3`, [username, email, user.id]);
 
-        response.redirect('/userProfile');
+        response.render('editUserSuccess');
 
     } catch (error) {
 
@@ -131,6 +131,6 @@ export async function updateProfile (request: Request, response: Response): Prom
 
         throw new Error("Try again later");
 
-    }; */
+    }; 
 
 }; 
