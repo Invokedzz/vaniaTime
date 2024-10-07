@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 
 import { registerPost, loginPost } from "./databaseMiddleware";
 
-import { homeInit, loginInit, registerInit, createGuides, viewGuides } from "../controllers/routesControllers";
+import { homeInit, loginInit, registerInit, createGuides, viewGuides, viewGuidesLogin } from "../controllers/routesControllers";
 
 export const homePage = (request: Request, response: Response): void => {
 
@@ -43,5 +43,11 @@ export const viewMethod = (request: Request, response: Response): void => {
 export const createMethod = (request: Request, response: Response): void => {
 
     createGuides(request, response);
+
+};
+
+export const viewMethodLogin = (request: Request, response: Response): void => {
+
+    viewGuidesLogin(request, response);
 
 };

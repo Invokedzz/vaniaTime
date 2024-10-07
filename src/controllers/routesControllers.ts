@@ -29,3 +29,9 @@ export function viewGuides (request: Request, response: Response): void {
     response.render("viewGuides");
 
 };
+
+export function viewGuidesLogin (request: Request, response: Response): void {
+
+    response.render("viewGuideslogin");
+
+};
