@@ -8,7 +8,7 @@ export type Username = {
     username?: string;
     email: string;
     password: string;
-
+    
 };
 
 export function verifyToken (request: Request, response: Response, next: NextFunction): void {

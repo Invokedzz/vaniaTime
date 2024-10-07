@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import { registerMethod, loginMethod, homePage, registerPage, loginPage, viewMethod, createMethod, viewMethodLogin, methodProfile } from '../models/routesDatabase';
+import { registerMethod, loginMethod, homePage, registerPage, loginPage, viewMethod, createMethod, viewMethodLogin, methodProfile, updateProfileMethod } from '../models/routesDatabase';
 
 const router = Router();
 
@@ -21,5 +21,7 @@ router.get('/profile', methodProfile);
 router.post('/registeruser', registerMethod);
 
 router.post('/loginuser', loginMethod);
+
+router.post('/updateProfile', updateProfileMethod);
 
 export { router };
