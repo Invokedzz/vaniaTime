@@ -10,7 +10,7 @@
     "forceConsistentCasingInFileNames": true,
     "typeRoots": [
       "./node_modules/@types",
-      "./types" 
+      "./src/types/express" 
     ] 
   },
   "include": [
