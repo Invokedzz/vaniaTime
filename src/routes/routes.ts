@@ -12,6 +12,8 @@ router.get('/login', loginPage);
 
 router.get('/viewGuides', viewMethod);
 
+router.get('/viewGuides/login', viewMethod);
+
 router.get('/createGuide', createMethod);
 
 router.post('/registeruser', registerMethod);
