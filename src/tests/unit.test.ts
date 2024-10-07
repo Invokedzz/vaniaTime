@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 
-import { homeInit, loginInit, registerInit } from "../controllers/routesControllers";
+import { homeInit, loginInit, registerInit, createGuides, viewGuides } from "../controllers/routesControllers";
 
 import { validateRegister, validateLogin, validateComments, validateTopic } from "../controllers/validatorsHeaders";
 
@@ -30,27 +30,43 @@ describe ("Handling with the renders", (): void => {
 
     });
 
-    it ("Should handle the responses correctly // homepage", (): void => {
+    it ("Should handle the responses correctly // homePage", (): void => {
 
         homeInit(Request as Request, Response as Response);
 
-        expect(Response.render).toHaveBeenCalledWith("homepage");
+        expect(Response.render).toHaveBeenCalledWith("homePage");
 
     });
 
-    it ("Should handle the responses correctly // loginpage", (): void => {
+    it ("Should handle the responses correctly // loginPage", (): void => {
 
         loginInit(Request as Request, Response as Response);
 
-        expect(Response.render).toHaveBeenCalledWith("loginpage");
+        expect(Response.render).toHaveBeenCalledWith("loginPage");
 
     });
 
-    it ("Should handle the responses correctly // registerpage", (): void => {
+    it ("Should handle the responses correctly // registerPage", (): void => {
 
         registerInit(Request as Request, Response as Response);
 
-        expect(Response.render).toHaveBeenCalledWith("registerpage");
+        expect(Response.render).toHaveBeenCalledWith("registerPage");
+
+    });
+
+    it ("Should handle the responses correctly // createGuides", (): void => {
+
+        createGuides(Request as Request, Response as Response);
+
+        expect(Response.render).toHaveBeenCalledWith("createGuides");
+
+    });
+
+    it ("Should handle the responses correctly // viewGuides", (): void => {
+
+        viewGuides(Request as Request, Response as Response);
+
+        expect(Response.render).toHaveBeenCalledWith("viewGuides");
 
     });
 
