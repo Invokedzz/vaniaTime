@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 
 import { registerPost, loginPost } from "./databaseMiddleware";
 
-import { homeInit, loginInit, registerInit } from "../controllers/routesControllers";
+import { homeInit, loginInit, registerInit, createGuides, viewGuides } from "../controllers/routesControllers";
 
 export const homePage = (request: Request, response: Response): void => {
 
@@ -31,5 +31,17 @@ export const registerMethod = async (request: Request, response: Response): Prom
 export const loginMethod = async (request: Request, response: Response): Promise <void> => {
 
     await loginPost(request, response);
+
+};
+
+export const viewMethod = (request: Request, response: Response): void => {
+
+    viewGuides(request, response);
+
+};
+
+export const createMethod = (request: Request, response: Response): void => {
+
+    createGuides(request, response);
 
 };

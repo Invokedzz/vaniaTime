@@ -18,10 +18,14 @@ export function loginInit (request: Request, response: Response): void {
 
 };
 
-export function createTopics (request: Request, response: Response): void {
+export function createGuides (request: Request, response: Response): void {
+
+    response.render("createGuides");
 
 };
 
-export function viewTopics (request: Request, response: Response): void {
+export function viewGuides (request: Request, response: Response): void {
+
+    response.render("viewGuides");
 
 };

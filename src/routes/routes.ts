@@ -1,12 +1,6 @@
-import express, { Router } from 'express';
+import { Router } from 'express';
 
-import { registerMethod, loginMethod, homePage, registerPage, loginPage } from '../models/routesDatabase';
-
-//import { verifyToken } from "../controllers/verifyToken";
-
-const application = express();
-
-//application.use(verifyToken);
+import { registerMethod, loginMethod, homePage, registerPage, loginPage, viewMethod, createMethod } from '../models/routesDatabase';
 
 const router = Router();
 
@@ -15,6 +9,10 @@ router.get('/', homePage);
 router.get('/register', registerPage);
 
 router.get('/login', loginPage);
+
+router.get('/viewGuides', viewMethod);
+
+router.get('/createGuide', createMethod);
 
 router.post('/registeruser', registerMethod);
 
