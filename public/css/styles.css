@@ -154,7 +154,6 @@ input[type="email"] {
 
 input[type="submit"] {
     margin-top: 10px;
-    background-color: #010e17; 
     color: #ffffff;
     border: none;
     padding: 10px;
@@ -166,12 +165,15 @@ input[type="submit"] {
 }
 
 input[type="submit"]:hover {
-    background-color: #007acc;
     transition: 0.6s;
 }
 
 .delete-btn {
     background-color: rgb(225, 12, 12);
+}
+
+.delete-btn:hover {
+    background-color: rgb(255, 0, 0);
 }
 
 .register-link {
@@ -208,4 +210,12 @@ input[type="submit"]:hover {
 
 .form-topic {
     margin-bottom: 30px;
+}
+
+.otherBtns {
+    background-color: #000;
+}
+
+.otherBtns:hover {
+    background-color: #063d65;
 }
