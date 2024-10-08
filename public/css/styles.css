@@ -219,3 +219,22 @@ input[type="submit"]:hover {
 .otherBtns:hover {
     background-color: #063d65;
 }
+
+.guide-container {
+    margin: auto;
+    margin-top: 5%;
+    color: #ffffff;
+    background-color: rgba(40, 40, 40, 0.9); 
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 600px;
+    width: 100%;
+}
+
+.guide-container label {
+    color: #ffffff;
+}
