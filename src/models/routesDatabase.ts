@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 
-import { registerPost, loginPost, userProfile, updateProfile, deleteProfile } from "./databaseMiddleware";
+import { registerPost, loginPost, userProfile, updateProfile, deleteProfile, createGuide } from "./databaseMiddleware";
 
 import { homeInit, loginInit, registerInit, createGuides, viewGuides, viewGuidesLogin } from "../controllers/routesControllers";
 
@@ -67,5 +67,11 @@ export const updateProfileMethod = async (request: Request, response: Response):
 export const deleteProfileMethod = async (request: Request, response: Response): Promise <void> => {
 
     await deleteProfile(request, response);
+
+};
+
+export const createGuideMethod = async (request: Request, response: Response): Promise <void> => {
+
+    await createGuide(request, response);
 
 };

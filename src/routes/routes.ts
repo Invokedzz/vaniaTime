@@ -1,6 +1,8 @@
 import { Router } from 'express';
 
-import { registerMethod, loginMethod, homePage, registerPage, loginPage, viewMethod, createMethod, viewMethodLogin, methodProfile, updateProfileMethod, deleteProfileMethod } from '../models/routesDatabase';
+import { registerMethod, loginMethod, homePage, registerPage, loginPage, viewMethod, createMethod, viewMethodLogin, methodProfile, updateProfileMethod, deleteProfileMethod, createGuideMethod } from '../models/routesDatabase';
+
+import { uploads } from '../controllers/uploadFiles';
 
 const router = Router();
 
@@ -25,5 +27,7 @@ router.post('/loginuser', loginMethod);
 router.post('/updateProfile', updateProfileMethod);
 
 router.post('/deleteProfile', deleteProfileMethod);
+
+router.post('/insertGuide', uploads.single('image'), createGuideMethod);
 
 export { router };

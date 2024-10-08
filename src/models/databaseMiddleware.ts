@@ -160,3 +160,35 @@ export async function deleteProfile (request: Request, response: Response): Prom
     };
 
 };
+
+export async function createGuide (request: Request, response: Response): Promise <void> {
+
+    const title: string = request.body.title;
+
+    const author: string = request.body.author;
+
+    const message: string = request.body.message;
+
+    const image: string | unknown = request.file;
+    
+    try {
+
+        const token = request.cookies.token;
+
+        const user: Username = jwt.verify(token, 'secret') as Username;
+
+        const result = await database.query(`INSERT INTO metroidvania.guides (title, author, message, image) VALUES ($1, $2, $3, $4, $5)`, [title, author, message, image]);
+
+        const guide = result.rows[0];
+
+        response.render('receiveGuides', { guide, user });
+
+    } catch (error) {
+
+        console.error("Something went wrong", error);
+
+        throw new Error("Try again later");
+
+    };
+
+};
