@@ -1,6 +1,6 @@
 import express from 'express';
 
-import rateLimit, { RateLimit } from 'express-rate-limit';
+import rateLimit from 'express-rate-limit';
 
 import { engine } from "express-handlebars";
 

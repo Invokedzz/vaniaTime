@@ -92,9 +92,13 @@ export async function userProfile (request: Request, response: Response): Promis
         if (userInfo.rows.length > 0) {
 
             const userDetails = userInfo.rows[0];
+
             response.render("userProfile", { 
+
                 username: userDetails.username, 
+
                 email: userDetails.email, 
+                
             });
             
         };
