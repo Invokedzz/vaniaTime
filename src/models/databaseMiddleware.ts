@@ -134,3 +134,25 @@ export async function updateProfile (request: Request, response: Response): Prom
     }; 
 
 }; 
+
+export async function deleteProfile (request: Request, response: Response): Promise <void> {
+
+    try {
+
+        const token = request.cookies.token;
+
+        const user: Username = jwt.verify(token, 'secret') as Username;
+
+        await database.query(`DELETE FROM metroidvania.users WHERE id = $1`, [user.id]);
+
+        response.redirect('/');
+
+    } catch (error) {
+
+        console.error("Something went wrong", error);
+
+        throw new Error("Try again later");
+
+    };
+
+};

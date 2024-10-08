@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 
-import { registerPost, loginPost, userProfile, updateProfile } from "./databaseMiddleware";
+import { registerPost, loginPost, userProfile, updateProfile, deleteProfile } from "./databaseMiddleware";
 
 import { homeInit, loginInit, registerInit, createGuides, viewGuides, viewGuidesLogin } from "../controllers/routesControllers";
 
@@ -61,5 +61,11 @@ export const methodProfile = async (request: Request, response: Response): Promi
 export const updateProfileMethod = async (request: Request, response: Response): Promise <void> => {
 
     await updateProfile(request, response);
+
+};
+
+export const deleteProfileMethod = async (request: Request, response: Response): Promise <void> => {
+
+    await deleteProfile(request, response);
 
 };
