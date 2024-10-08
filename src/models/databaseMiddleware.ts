@@ -60,9 +60,9 @@ export async function loginPost (request: Request, response: Response): Promise 
 
             const token = jwt.sign({ id: user.id }, 'secret', { expiresIn: '1h' });
 
-            response.cookie('token', token, { httpOnly: true }); 
+            response.cookie('token', token, { httpOnly: true, secure: true }); 
 
-            response.render("userLogin", { username: user.username });
+            return response.render("userLogin", { username: user.username });
 
         };
 
