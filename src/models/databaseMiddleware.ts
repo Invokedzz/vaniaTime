@@ -177,7 +177,7 @@ export async function createGuide (request: Request, response: Response): Promis
 
         const user: Username = jwt.verify(token, 'secret') as Username;
 
-        const result = await database.query(`INSERT INTO metroidvania.guides (title, author, message, image) VALUES ($1, $2, $3, $4, $5)`, [title, author, message, image]);
+        const result = await database.query(`INSERT INTO metroidvania.guide (title, author, message, image) VALUES ($1, $2, $3, $4)`, [title, author, message, image]);
 
         const guide = result.rows[0];
 

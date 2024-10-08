@@ -54,6 +54,8 @@ export class startServer {
 
         application.use(express.urlencoded({ extended: true }));
 
+        application.use(express.static('uploads'));
+
         application.use(express.static('public'));
         
         application.use(cookieParser());
