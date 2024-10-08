@@ -169,19 +169,37 @@ export async function createGuide (request: Request, response: Response): Promis
 
     const message: string = request.body.message;
 
-    const image: string | unknown = request.file;
-    
+    const image = request.file;
+
+    const imagePath = image?.path;
+
     try {
 
-        const token = request.cookies.token;
-
-        const user: Username = jwt.verify(token, 'secret') as Username;
-
-        const result = await database.query(`INSERT INTO metroidvania.guide (title, author, message, image) VALUES ($1, $2, $3, $4)`, [title, author, message, image]);
+        const result = await database.query(`INSERT INTO metroidvania.guide (title, author, message, image) VALUES ($1, $2, $3, $4)`, [title, author, message, imagePath]);
 
         const guide = result.rows[0];
 
-        response.render('receiveGuides', { guide, user });
+        response.render('receiveGuides', { guide });
+
+    } catch (error) {
+
+        console.error("Something went wrong", error);
+
+        throw new Error("Try again later");
+
+    };
+
+};
+
+export async function receiveGuidesInfo (request: Request, response: Response): Promise <void> {
+
+    try {
+
+        const result = await database.query(`SELECT * FROM metroidvania.guide`);
+
+        const guides = result.rows;
+
+        response.render('viewGuideslogin', { guides });
 
     } catch (error) {
 

@@ -14,6 +14,24 @@
 
         <div class="chatblock">
 
+            <h3>Guides:</h3>
+
+            {{#each guides}}
+
+            <p>{{title}}</p>
+
+            <p>{{author}}</p>
+
+            <p>{{message}}</p>
+
+            <img src="{{image}}" alt="randomImage" style="max-width: 200px;">
+
+            {{else}}
+
+            <p>There are no guides available right now.</p>
+
+            {{/each}}
+
         </div>
 
     </article>

@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import { registerMethod, loginMethod, homePage, registerPage, loginPage, viewMethod, createMethod, viewMethodLogin, methodProfile, updateProfileMethod, deleteProfileMethod, createGuideMethod } from '../models/routesDatabase';
+import { registerMethod, loginMethod, homePage, registerPage, loginPage, viewMethod, createMethod, viewMethodLogin, methodProfile, updateProfileMethod, deleteProfileMethod, createGuideMethod, guideViewMethod } from '../models/routesDatabase';
 
 import { uploads } from '../controllers/uploadFiles';
 
@@ -14,7 +14,9 @@ router.get('/login', loginPage);
 
 router.get('/viewGuides', viewMethod);
 
-router.get('/viewGuides/login', viewMethodLogin);
+//router.get('/viewGuides/login', viewMethodLogin);
+
+router.get('/viewGuides/login', guideViewMethod);
 
 router.get('/createGuide', createMethod);
 
