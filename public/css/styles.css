@@ -248,3 +248,11 @@ input[type="submit"]:hover {
     margin-top: 20px;
     padding-bottom: 10px;
 }
+
+.btns {
+    margin-top: 20px;
+}
+
+.edit {
+    margin-right: 100px;
+}
