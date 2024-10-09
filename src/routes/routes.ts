@@ -16,7 +16,7 @@ router.get('/viewGuides', viewMethod);
 
 //router.get('/viewGuides/login', viewMethodLogin);
 
-router.get('/viewGuides/login', guideViewMethod);
+router.get('/viewGuides/login', uploads.single('image'), guideViewMethod);
 
 router.get('/createGuide', createMethod);
 

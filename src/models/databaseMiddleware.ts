@@ -2,13 +2,18 @@ import { Request, Response } from "express";
 
 import { database } from "../db/database";
 
+import { validateRegister, validateLogin } from "../controllers/validatorsHeaders";
+
+import { Username } from "../controllers/verifyToken";
+
+import path from "path";
+
+import fs from "fs";
+
 import bcrypt from "bcryptjs";
 
 import jwt from "jsonwebtoken";
 
-import { validateRegister, validateLogin } from "../controllers/validatorsHeaders";
-
-import { Username } from "../controllers/verifyToken";
 
 export async function registerPost (request: Request, response: Response): Promise <void> {
 
@@ -171,11 +176,13 @@ export async function createGuide (request: Request, response: Response): Promis
 
     const image = request.file;
 
-    const imagePath = image?.path;
-
     try {
 
-        const result = await database.query(`INSERT INTO metroidvania.guide (title, author, message, image) VALUES ($1, $2, $3, $4)`, [title, author, message, imagePath]);
+        const imagePath = image?.path;
+
+        const imageAnalysis = fs.readFileSync(imagePath as string);
+
+        const result = await database.query(`INSERT INTO metroidvania.guide (title, author, message, image) VALUES ($1, $2, $3, $4)`, [title, author, message, imageAnalysis]);
 
         const guide = result.rows[0];
 
@@ -197,7 +204,12 @@ export async function receiveGuidesInfo (request: Request, response: Response): 
 
         const result = await database.query(`SELECT * FROM metroidvania.guide`);
 
-        const guides = result.rows;
+        const guides = result.rows.map(guide => ({
+
+            ...guide,
+            image: guide.image ? guide.image.toString('base64') : null 
+            
+        }));
 
         response.render('viewGuideslogin', { guides });
 
