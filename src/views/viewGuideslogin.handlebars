@@ -15,8 +15,8 @@
         <div class="chatblock">
 
             <h1>Guides:</h1>
-            
-            {{#each guides}}
+
+            {{#with guides}}
 
             <div class="structure-content">
 
@@ -24,9 +24,9 @@
 
                 <h3>- {{title}}</h3>
 
-            <p>- {{author}}</p>
-
             <p>- {{message}}</p>
+
+            <p>- {{username}}</p>
 
            <div class="imageshit">
 
@@ -43,11 +43,9 @@
 
             <p>There are no guides available right now.</p>
 
-            {{username}}
-
             </div>
 
-             {{/each}}
+            {{/with}}
 
         </div>
 
