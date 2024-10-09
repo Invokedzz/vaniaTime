@@ -207,8 +207,8 @@ export async function receiveGuidesInfo (request: Request, response: Response): 
         const guides = result.rows.map(guide => ({
 
             ...guide,
-            image: guide.image ? guide.image.toString('base64') : null 
-            
+            image: guide.image ? guide.image.toString('base64'): null,
+
         }));
 
         response.render('viewGuideslogin', { guides });
