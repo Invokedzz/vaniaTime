@@ -6,8 +6,6 @@ import { validateRegister, validateLogin } from "../controllers/validatorsHeader
 
 import { Username } from "../controllers/verifyToken";
 
-import Handlebars from "handlebars";
-
 import fs from "fs";
 
 import bcrypt from "bcryptjs";

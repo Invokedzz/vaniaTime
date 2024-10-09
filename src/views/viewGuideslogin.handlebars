@@ -20,14 +20,14 @@
 
             <div class="structure-content">
 
-                <form action="" method="POST">
+            <form action="" method="POST">
 
 
-            <p>{{../username}}</p>
-
-                <h3>- {{title}}</h3>
+            <h3>- {{title}}</h3>
 
             <p>- {{message}}</p>
+
+            <p>Created by: {{../username}}</p>
 
            <div class="imageshit">
 
@@ -35,10 +35,15 @@
 
            </div>
 
+            <input type="submit" class="otherBtns" name="delete" value="Delete">
 
             </form>
 
+            <form action="" method="GET">
 
+                <input type="submit" class="otherBtns" name="edit" value="Edit">
+
+            </form>
 
             {{else}}
 
