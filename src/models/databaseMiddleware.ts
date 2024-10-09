@@ -6,8 +6,6 @@ import { validateRegister, validateLogin } from "../controllers/validatorsHeader
 
 import { Username } from "../controllers/verifyToken";
 
-import path from "path";
-
 import fs from "fs";
 
 import bcrypt from "bcryptjs";
@@ -170,8 +168,6 @@ export async function createGuide (request: Request, response: Response): Promis
 
     const title: string = request.body.title;
 
-    const author: string = request.body.author;
-
     const message: string = request.body.message;
 
     const image = request.file;
@@ -182,7 +178,7 @@ export async function createGuide (request: Request, response: Response): Promis
 
         const imageAnalysis = fs.readFileSync(imagePath as string);
 
-        const result = await database.query(`INSERT INTO metroidvania.guide (title, author, message, image) VALUES ($1, $2, $3, $4)`, [title, author, message, imageAnalysis]);
+        const result = await database.query(`INSERT INTO metroidvania.guide (title, message, image) VALUES ($1, $2, $3)`, [title, message, imageAnalysis]);
 
         const guide = result.rows[0];
 
@@ -211,7 +207,15 @@ export async function receiveGuidesInfo (request: Request, response: Response): 
 
         }));
 
-        response.render('viewGuideslogin', { guides });
+        const token = request.cookies.token;
+
+        const user: Username = jwt.verify(token, 'secret') as Username;
+
+        const userInfo = await database.query(`SELECT * FROM metroidvania.users WHERE id = $1`, [user.id]);
+
+        const username = userInfo.rows[0].username;
+
+        response.render('viewGuideslogin', { guides, username });
 
     } catch (error) {
 
