@@ -16,17 +16,18 @@
 
             <h1>Guides:</h1>
 
-            {{#with guides}}
+            {{#each guides}}
 
             <div class="structure-content">
 
                 <form action="" method="POST">
 
+
+            <p>{{../username}}</p>
+
                 <h3>- {{title}}</h3>
 
             <p>- {{message}}</p>
-
-            <p>- {{username}}</p>
 
            <div class="imageshit">
 
@@ -45,7 +46,7 @@
 
             </div>
 
-            {{/with}}
+            {{/each}}
 
         </div>
 

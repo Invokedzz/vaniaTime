@@ -6,6 +6,8 @@ import { validateRegister, validateLogin } from "../controllers/validatorsHeader
 
 import { Username } from "../controllers/verifyToken";
 
+import Handlebars from "handlebars";
+
 import fs from "fs";
 
 import bcrypt from "bcryptjs";
@@ -213,7 +215,7 @@ export async function receiveGuidesInfo (request: Request, response: Response): 
 
         const userInfo = await database.query(`SELECT * FROM metroidvania.users WHERE id = $1`, [user.id]);
 
-        const username = userInfo.rows[0].username;
+        const username: string [] = userInfo.rows[0].username;
 
         response.render('viewGuideslogin', { guides, username });
 
