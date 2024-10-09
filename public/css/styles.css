@@ -238,3 +238,12 @@ input[type="submit"]:hover {
 .guide-container label {
     color: #ffffff;
 }
+
+.structure-content {
+    color: #ffffff;
+    background-color: #000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
