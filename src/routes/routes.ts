@@ -34,4 +34,6 @@ router.post('/insertGuide', uploads.single('image'), createGuideMethod);
 
 router.post('/deleteGuide', deleteShittyGuide);
 
+router.post('/editGuide/:id', uploads.single('image'), guideUpdatePost);
+
 export { router };

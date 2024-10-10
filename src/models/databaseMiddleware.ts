@@ -271,7 +271,9 @@ export async function updateGuidesInfoGet (request: Request, response: Response)
 
     try {
     
-        const selectTopic = await database.query(`SELECT * FROM metroidvania.guide WHERE id = $1`, [id]);
+        const topic = await database.query(`SELECT * FROM metroidvania.guide WHERE id = $1`, [id]);
+
+        const selectTopic = topic.rows;
 
         response.render('editingGuide', { selectTopic });
 
@@ -287,7 +289,19 @@ export async function updateGuidesInfoGet (request: Request, response: Response)
 
 export async function updateGuidesInfoPost (request: Request, response: Response): Promise <void> {
   
+    const id: string = request.params.id;
+
+    const title: string = request.body.title;
+
+    const author: string = request.body.author;
+
+    const message: string = request.body.message;
+
     try {
+
+        await database.query(`UPDATE metroidvania.guide SET title = $1, author = $2, message = $3 WHERE id = $4`, [title, author, message, id]);
+
+        response.render('editGuideSuccess');
 
     } catch (error) {
 
