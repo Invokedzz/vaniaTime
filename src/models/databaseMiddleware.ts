@@ -168,9 +168,23 @@ export async function guidesPreview (request: Request, response: Response): Prom
 
     try {
 
-        
+        const token = request.cookies.token;
 
-    } catch (error) {};
+        const user: Username = jwt.verify(token, 'secret') as Username;
+
+        const userInfo = await database.query(`SELECT * FROM metroidvania.users WHERE id = $1`, [user.id]);
+
+        const username = userInfo.rows[0].username;
+
+        response.render('createGuides', { username });
+
+    } catch (error) {
+
+        console.error("Something went wrong", error);
+
+        throw new Error("Try again later");
+
+    };
 
 };
 
@@ -178,7 +192,7 @@ export async function createGuide (request: Request, response: Response): Promis
 
     const title: string = request.body.title;
 
-    const author: string = request.body.title;
+    const author: string = request.body.author;
 
     const message: string = request.body.message;
 
@@ -190,7 +204,7 @@ export async function createGuide (request: Request, response: Response): Promis
 
         const imageAnalysis = fs.readFileSync(imagePath as string);
 
-        const result = await database.query(`INSERT INTO metroidvania.guide (title, author, message, image) VALUES ($1, $2, $3 $4)`, [title, author, message, imageAnalysis]);
+        const result = await database.query(`INSERT INTO metroidvania.guide (title, author, message, image) VALUES ($1, $2, $3, $4)`, [title, author, message, imageAnalysis]);
 
         const guide = result.rows[0];
 
@@ -219,15 +233,7 @@ export async function receiveGuidesInfo (request: Request, response: Response): 
 
         }));
 
-        const token = request.cookies.token;
-
-        const user: Username = jwt.verify(token, 'secret') as Username;
-
-        const userInfo = await database.query(`SELECT * FROM metroidvania.users WHERE id = $1`, [user.id]);
-
-        const username: string [] = userInfo.rows[0].username;
-
-        response.render('viewGuideslogin', { guides, username });
+        response.render('viewGuideslogin', { guides });
 
     } catch (error) {
 
