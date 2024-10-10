@@ -34,15 +34,17 @@
 
             <div class="btns">
 
-            <form action="/showid/{{id}}" method="POST">
+            <form action="/editGuide/{{id}}" method="GET">
 
             <button class="edit">Edit</button>
 
             </form>
 
-            <form action="" method="GET">
+            <form action="/deleteGuide" method="POST">
 
-                <button class="erase">Erase</button>
+                <button class="erase" type="submit">Delete</button>
+
+                <input type="hidden" name="id" value="{{id}}">
 
             </form>
 

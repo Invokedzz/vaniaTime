@@ -247,7 +247,13 @@ export async function receiveGuidesInfo (request: Request, response: Response): 
 
 export async function deleteAGuide (request: Request, response: Response): Promise <void> {
 
+    const id: string = request.body.id;
+
     try {
+
+        await database.query(`DELETE FROM metroidvania.guide WHERE id = $1`, [id]);
+
+        response.render('deleteGuide');
 
     } catch (error) {
 

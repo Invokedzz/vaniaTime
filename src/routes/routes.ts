@@ -14,8 +14,6 @@ router.get('/login', loginPage);
 
 router.get('/viewGuides', viewMethod);
 
-//router.get('/viewGuides/login', viewMethodLogin);
-
 router.get('/viewGuides/login', uploads.single('image'), guideViewMethod);
 
 router.get('/createGuide', createMethod);
@@ -31,5 +29,7 @@ router.post('/updateProfile', updateProfileMethod);
 router.post('/deleteProfile', deleteProfileMethod);
 
 router.post('/insertGuide', uploads.single('image'), createGuideMethod);
+
+router.post('/deleteGuide', deleteShittyGuide);
 
 export { router };
