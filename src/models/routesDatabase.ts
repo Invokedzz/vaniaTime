@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 
-import { registerPost, loginPost, userProfile, updateProfile, deleteProfile, createGuide, receiveGuidesInfo, guidesPreview } from "./databaseMiddleware";
+import { registerPost, loginPost, userProfile, updateProfile, deleteProfile, createGuide, receiveGuidesInfo, guidesPreview, updateGuidesInfoGet, updateGuidesInfoPost, deleteAGuide } from "./databaseMiddleware";
 
 import { homeInit, loginInit, registerInit, viewGuides, viewGuidesLogin } from "../controllers/routesControllers";
 
@@ -84,12 +84,18 @@ export const guideViewMethod = async (request: Request, response: Response): Pro
 
 export const deleteShittyGuide = async (request: Request, response: Response): Promise <void> => {
 
+    await deleteAGuide(request, response);
+
 };
 
 export const guideUpdateGet = async (request: Request, response: Response): Promise <void> => {
 
+    await updateGuidesInfoGet(request, response);
+
 };
 
 export const guideUpdatePost = async (request: Request, response: Response): Promise <void> => {
+
+    await updateGuidesInfoPost(request, response);
 
 };
