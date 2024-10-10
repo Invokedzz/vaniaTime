@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
 
-import { registerPost, loginPost, userProfile, updateProfile, deleteProfile, createGuide, receiveGuidesInfo } from "./databaseMiddleware";
+import { registerPost, loginPost, userProfile, updateProfile, deleteProfile, createGuide, receiveGuidesInfo, guidesPreview } from "./databaseMiddleware";
 
-import { homeInit, loginInit, registerInit, createGuides, viewGuides, viewGuidesLogin } from "../controllers/routesControllers";
+import { homeInit, loginInit, registerInit, viewGuides, viewGuidesLogin } from "../controllers/routesControllers";
 
 export const homePage = (request: Request, response: Response): void => {
 
@@ -40,9 +40,9 @@ export const viewMethod = (request: Request, response: Response): void => {
 
 };
 
-export const createMethod = (request: Request, response: Response): void => {
+export const createMethod = async (request: Request, response: Response): Promise <void> => {
 
-    createGuides(request, response);
+    await guidesPreview(request, response);
 
 };
 

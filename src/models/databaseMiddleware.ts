@@ -164,9 +164,21 @@ export async function deleteProfile (request: Request, response: Response): Prom
 
 };
 
+export async function guidesPreview (request: Request, response: Response): Promise <void> {
+
+    try {
+
+        
+
+    } catch (error) {};
+
+};
+
 export async function createGuide (request: Request, response: Response): Promise <void> {
 
     const title: string = request.body.title;
+
+    const author: string = request.body.title;
 
     const message: string = request.body.message;
 
@@ -178,7 +190,7 @@ export async function createGuide (request: Request, response: Response): Promis
 
         const imageAnalysis = fs.readFileSync(imagePath as string);
 
-        const result = await database.query(`INSERT INTO metroidvania.guide (title, message, image) VALUES ($1, $2, $3)`, [title, message, imageAnalysis]);
+        const result = await database.query(`INSERT INTO metroidvania.guide (title, author, message, image) VALUES ($1, $2, $3 $4)`, [title, author, message, imageAnalysis]);
 
         const guide = result.rows[0];
 

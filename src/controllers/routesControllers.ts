@@ -1,5 +1,9 @@
 import { Request, Response } from "express";
 
+import { Username } from "../controllers/verifyToken";
+
+import jwt from "jsonwebtoken";
+
 export function homeInit (request: Request, response: Response): void {
 
     response.render("homePage");
@@ -15,12 +19,6 @@ export function registerInit (request: Request, response: Response): void {
 export function loginInit (request: Request, response: Response): void {
 
     response.render("loginPage");
-
-};
-
-export function createGuides (request: Request, response: Response): void {
-
-    response.render("createGuides");
 
 };
 
