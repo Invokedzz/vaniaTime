@@ -81,3 +81,15 @@ export const guideViewMethod = async (request: Request, response: Response): Pro
     await receiveGuidesInfo(request, response);
 
 };
+
+export const deleteShittyGuide = async (request: Request, response: Response): Promise <void> => {
+
+};
+
+export const guideUpdateGet = async (request: Request, response: Response): Promise <void> => {
+
+};
+
+export const guideUpdatePost = async (request: Request, response: Response): Promise <void> => {
+
+};

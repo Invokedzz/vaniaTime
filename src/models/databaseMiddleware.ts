@@ -244,3 +244,15 @@ export async function receiveGuidesInfo (request: Request, response: Response): 
     };
 
 };
+
+export async function deleteAGuide (request: Request, response: Response): Promise <void> {
+
+};
+
+export async function updateGuidesInfoGet (request: Request, response: Response): Promise <void> {
+
+};
+
+export async function updateGuidesInfoPost (request: Request, response: Response): Promise <void> {
+    
+};

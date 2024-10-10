@@ -20,9 +20,6 @@
 
             <div class="structure-content">
 
-            <form action="" method="POST">
-
-
             <h3>- {{title}}</h3>
 
             <p>- {{message}}</p>
@@ -37,9 +34,17 @@
 
             <div class="btns">
 
+            <form action="/showid/{{id}}" method="POST">
+
             <button class="edit">Edit</button>
 
-            <button class="erase">Erase</button>
+            </form>
+
+            <form action="" method="GET">
+
+                <button class="erase">Erase</button>
+
+            </form>
 
             </div>
 
