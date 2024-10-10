@@ -20,7 +20,7 @@ router.get('/createGuide', createMethod);
 
 router.get('/profile', methodProfile);
 
-router.get('/editGuide', guideUpdateGet);
+router.get('/editGuide/:id', guideUpdateGet);
 
 router.post('/registeruser', registerMethod);
 

@@ -1,68 +1,36 @@
 {{> loginHeaders}}
 
-    <article>
-            <div class="chatblock">
+<article>
+    <div class="chatblock">
+        <input type="text" placeholder="Search..." class="search-input">
+        <button class="search-button">Search</button>
+    </div>
+</article>
 
-            <input type="text" placeholder="Search..." class="search-input">
+<article>
+    <div class="chatblock">
+        <h1>Guides:</h1>
 
-            <button class="search-button">Search</button>
-            
-            </div>
-    </article>
-
-    <article>
-
-        <div class="chatblock">
-
-            <h1>Guides:</h1>
-
-            {{#each guides}}
-
+        {{#each guides}}
             <div class="structure-content">
-
-            <h3>- {{title}}</h3>
-
-            <p>- {{message}}</p>
-
-            <p>Created by: {{author}}</p>
-
-           <div class="imageshit">
-
-             <img src="data:image/jpeg;base64, {{image}}" alt="" style="max-width: 200px;">
-
-           </div>
-
-            <div class="btns">
-
-            <form action="/editGuide" method="GET">
-
-            <button class="edit">Edit</button>
-
-            <input type="hidden" name="id" value="{{id}}">
-
-            </form>
-
-            <form action="/deleteGuide" method="POST">
-
-                <button class="erase" type="submit">Delete</button>
-
-                <input type="hidden" name="id" value="{{id}}">
-
-            </form>
-
+                <h3>- {{title}}</h3>
+                <p>- {{message}}</p>
+                <p>Created by: {{author}}</p>
+                <div class="imageshit">
+                    <img src="data:image/jpeg;base64, {{image}}" alt="" style="max-width: 200px;">
+                </div>
+                <div class="btns">
+                    <form action="/editGuide/{{id}}" method="GET">
+                        <button class="edit">Edit</button>
+                    </form>
+                    <form action="/deleteGuide" method="POST">
+                        <button class="erase" type="submit">Delete</button>
+                        <input type="hidden" name="id" value="{{id}}">
+                    </form>
+                </div>
             </div>
-
-        </form>
-
-
-            {{else}}
-
+        {{else}}
             <p>There are no guides available right now.</p>
-
-            </div>
-
-            {{/each}}
-
-        </div>
-
-    </article>
+        {{/each}}
+    </div>
+</article>

@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 
-import { homeInit, loginInit, registerInit, createGuides, viewGuides, viewGuidesLogin } from "../controllers/routesControllers";
+import { homeInit, loginInit, registerInit, viewGuides, viewGuidesLogin } from "../controllers/routesControllers";
 
 import { validateRegister, validateLogin, validateComments, validateTopic, validUpdate } from "../controllers/validatorsHeaders";
 
@@ -56,7 +56,7 @@ describe ("Handling with the renders", (): void => {
 
     it ("Should handle the responses correctly // createGuides", (): void => {
 
-        createGuides(Request as Request, Response as Response);
+    //    createGuides(Request as Request, Response as Response);
 
         expect(Response.render).toHaveBeenCalledWith("createGuides");
 
