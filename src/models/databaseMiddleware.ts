@@ -267,7 +267,15 @@ export async function deleteAGuide (request: Request, response: Response): Promi
 
 export async function updateGuidesInfoGet (request: Request, response: Response): Promise <void> {
 
+    const id: string = request.body.id;
+
     try {
+
+        const analysisGuide = await database.query(`SELECT * FROM metroidvania.guide WHERE id = $1`, [id]);
+
+        const guide = analysisGuide.rows;
+
+        response.render('editingGuide', { guide });
 
     } catch (error) {
 

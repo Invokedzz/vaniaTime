@@ -34,9 +34,11 @@
 
             <div class="btns">
 
-            <form action="/editGuide/{{id}}" method="GET">
+            <form action="/editGuide" method="GET">
 
             <button class="edit">Edit</button>
+
+            <input type="hidden" name="id" value="{{id}}">
 
             </form>
 
