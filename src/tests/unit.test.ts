@@ -675,4 +675,44 @@ describe ("commentaryControl function test", (): void => {
 
 describe ("validateCommentary function test", (): void => {
 
+    it ("Should not return anything", (): void => {
+
+        const username: string = "testing";
+
+        const message: string = "something nice";
+
+        const ourSpy = jest.spyOn(console, 'log');
+
+        validateCommentary(username, message);
+
+        expect(ourSpy).not.toHaveBeenCalled();
+
+        ourSpy.mockRestore();
+
+    });
+
+    it ("Should return empty username error", (): void => {
+
+        const username: string = '';
+
+        const message: string = "something nice";
+
+        const errorMsg = validateCommentary(username, message);
+
+        expect(errorMsg).toContain("Invalid account. Try again.");
+
+    });
+
+    it ("Should return empty message error", (): void => {
+
+        const username: string = "testing";
+
+        const message: string = '';
+
+        const errorMsg = validateCommentary(username, message);
+
+        expect(errorMsg).toContain("Invalid message. Try again.");
+
+    });
+
 });
