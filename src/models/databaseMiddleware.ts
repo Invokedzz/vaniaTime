@@ -361,10 +361,15 @@ export async function commentaryPost (request: Request, response: Response): Pro
 
 export async function renderCommentsView (request: Request, response: Response): Promise <void> {
 
-    
+    const id: string = request.params.id;
 
     try {
 
+        const allElements = await database.query(`SELECT * FROM metroidvania.comments WHERE id_guide = $1`, [id]);
+
+        const getElements = allElements.rows;
+
+        response.render('viewComments', { getElements });
 
 
     } catch (error) {

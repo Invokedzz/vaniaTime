@@ -1,0 +1,16 @@
+{{> loginHeaders}}
+
+<article>
+    <div class="chatblock">
+        <h1>Guides:</h1>
+
+        {{#each getElements}}
+            <div class="structure-content">
+                <h3>Commentary created by: {{username}}</h3>
+                <p>Text: {{message}}</p>
+            </div>
+        {{else}}
+            <p>There are no comments for now. Quiet, too quiet.</p>
+        {{/each}}
+    </div>
+</article>
