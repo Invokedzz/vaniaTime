@@ -38,6 +38,6 @@ router.post('/deleteGuide', deleteShittyGuide);
 
 router.post('/editGuide/:id', uploads.single('image'), guideUpdatePost);
 
-router.post('', createCommentaryPost);
+router.post('/postComment/:id', createCommentaryPost);
 
 export { router };

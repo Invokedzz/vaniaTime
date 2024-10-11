@@ -323,7 +323,7 @@ export async function commentaryGet (request: Request, response: Response): Prom
 
         const username = getUser.rows[0].author;
 
-        response.render('createComments', { username });
+        response.render('createComments', { username, id });
 
     } catch (error) {
 
@@ -345,7 +345,11 @@ export async function commentaryPost (request: Request, response: Response): Pro
 
     try {
 
-        await database.query(`INSERT INTO metroidvania.comments (username, message, id_guide) VALUES ($1, $2, $3)`, [username, message, id_guide]);
+       const databaseElements = await database.query(`INSERT INTO metroidvania.comments (username, message, id_guide) VALUES ($1, $2, $3)`, [username, message, id_guide]);
+
+       const comments = databaseElements.rows;
+
+        response.render('commentsSuccess', { comments });
 
     } catch (error) {
 
