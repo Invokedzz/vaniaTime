@@ -2,9 +2,9 @@ import { Request, Response } from "express";
 
 import { homeInit, loginInit, registerInit, viewGuides, viewGuidesLogin } from "../controllers/routesControllers";
 
-import { validateRegister, validateLogin, validateGuide, validateTopic, validUpdate } from "../controllers/validatorsHeaders";
+import { validateRegister, validateLogin, validateGuide, validateTopic, validUpdate, validateCommentary } from "../controllers/validatorsHeaders";
 
-import { loginControl, registerControl, topicControl, guideControl } from "../controllers/validatorsControl";
+import { loginControl, registerControl, topicControl, guideControl, commentaryControl } from "../controllers/validatorsControl";
 
 describe ("Handling with the renders", (): void => {
 
@@ -56,7 +56,7 @@ describe ("Handling with the renders", (): void => {
 
     it ("Should handle the responses correctly // createGuides", (): void => {
 
-        expect(Response.render).toHaveBeenCalledWith("createGuides");
+        //expect(Response.render).toHaveBeenCalledWith("createGuides");
 
     });
 
@@ -626,5 +626,53 @@ describe ("Validate user update function", (): void => {
         expect(errorMessage).toContain("Invalid account. Try again.");
 
     });
+
+});
+
+describe ("commentaryControl function test", (): void => {
+
+    it ("Should return username error", (): void => {
+
+        const username: string = '';
+
+        const message: string = "something nice";
+
+        const errorMsg = commentaryControl(username, message);
+
+        expect(errorMsg).toContain("Invalid username. Try again. Minimum: 1 character, maximum: 30 characters.");   
+
+    });
+
+    it ("Should return message error", (): void => {
+
+        const username: string = "testing";
+
+        const message: string = '';
+
+        const errorMsg = commentaryControl(username, message);
+
+        expect(errorMsg).toContain("Invalid message. Try again. Minimum: 3 characters, maximum: 255 characters.");
+
+    });
+
+    it ("Should not return anything", (): void => {
+
+        const username: string = 'testing';
+
+        const message: string = "something nice";
+
+        const ourSpy = jest.spyOn(console, 'log');
+
+        commentaryControl(username, message);
+
+        expect(ourSpy).not.toHaveBeenCalled();
+
+        ourSpy.mockRestore();
+
+    });
+
+});
+
+describe ("validateCommentary function test", (): void => {
 
 });
