@@ -347,9 +347,9 @@ export async function commentaryPost (request: Request, response: Response): Pro
 
        const databaseElements = await database.query(`INSERT INTO metroidvania.comments (username, message, id_guide) VALUES ($1, $2, $3)`, [username, message, id_guide]);
 
-       const comments = databaseElements.rows;
+       const comments = databaseElements.rows[0];
 
-        response.render('commentsSuccess', { comments });
+        response.render('commentsSuccess', { comments, id_guide });
 
     } catch (error) {
 
