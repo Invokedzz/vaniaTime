@@ -328,3 +328,17 @@ export async function commentaryGet (request: Request, response: Response): Prom
     };
 
 };
+
+export async function commentaryPost (request: Request, response: Response): Promise <void> {
+
+    try {
+
+    } catch (error) {
+
+        console.error("Something went wrong", error);
+
+        throw new Error("Try again later");
+
+    };
+
+};
