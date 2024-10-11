@@ -74,3 +74,20 @@ export function guideControl (
     return errors;
 
 };
+
+export function commentaryControl (
+    
+    username: string,
+    message: string,
+
+): string [] {
+
+    const errors: string [] = [];
+
+    if (username.length < 1 || username.length > 30) errors.push("Invalid username. Try again. Minimum: 1 character, maximum: 30 characters.");
+
+    if (message.length < 3 || message.length > 255) errors.push("Invalid message. Try again. Minimum: 3 characters, maximum: 255 characters.");
+
+    return errors;
+
+};

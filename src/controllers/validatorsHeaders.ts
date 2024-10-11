@@ -87,3 +87,20 @@ export function validUpdate (
     return errors;
 
 }
+
+export function validateCommentary (
+    
+    username: string,
+    message: string,
+
+): string [] {
+
+    const errors: string [] = [];
+
+    if (validator.isEmpty(username)) errors.push("Invalid account. Try again.");
+
+    if (validator.isEmpty(message)) errors.push("Invalid message. Try again.");
+
+    return errors;
+
+};
