@@ -53,7 +53,7 @@ export function validateTopic (
 
 };
 
-export function validateComments (
+export function validateGuide (
     
     title: string,
     author: string,

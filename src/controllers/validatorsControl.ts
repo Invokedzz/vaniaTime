@@ -55,7 +55,7 @@ export function topicControl (
 
 };
 
-export function commentControl (
+export function guideControl (
     
     title: string,
     author: string,

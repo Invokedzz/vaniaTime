@@ -4,10 +4,6 @@ import helmet from "helmet";
 
 import session from "express-session";
 
-// import { Sequelize } from "sequelize";
-
-// import connectSessionSequelize from 'connect-session-sequelize';
-
 import csurf from "csurf";
 
 import morgan from "morgan";

@@ -2,9 +2,9 @@ import { Request, Response } from "express";
 
 import { homeInit, loginInit, registerInit, viewGuides, viewGuidesLogin } from "../controllers/routesControllers";
 
-import { validateRegister, validateLogin, validateComments, validateTopic, validUpdate } from "../controllers/validatorsHeaders";
+import { validateRegister, validateLogin, validateGuide, validateTopic, validUpdate } from "../controllers/validatorsHeaders";
 
-import { loginControl, registerControl, topicControl, commentControl } from "../controllers/validatorsControl";
+import { loginControl, registerControl, topicControl, guideControl } from "../controllers/validatorsControl";
 
 describe ("Handling with the renders", (): void => {
 
@@ -55,8 +55,6 @@ describe ("Handling with the renders", (): void => {
     });
 
     it ("Should handle the responses correctly // createGuides", (): void => {
-
-    //    createGuides(Request as Request, Response as Response);
 
         expect(Response.render).toHaveBeenCalledWith("createGuides");
 
@@ -470,7 +468,7 @@ describe("validateComments test", (): void => {
 
         const message: string = "";
 
-        const returnErrors = validateComments(title, author, message);
+        const returnErrors = validateGuide(title, author, message);
 
         expect(returnErrors).toContain("Invalid message. Try again.");
 
@@ -484,7 +482,7 @@ describe("validateComments test", (): void => {
 
         const message: string = "something";
 
-        const returnErrors = validateComments(title, author, message);
+        const returnErrors = validateGuide(title, author, message);
 
         expect(returnErrors).toContain("Invalid informations. Try again.");
 
@@ -500,7 +498,7 @@ describe("validateComments test", (): void => {
 
         const ourSpy = jest.spyOn(console, 'log');
 
-        validateComments(title, author, message);
+        validateGuide(title, author, message);
 
         expect(ourSpy).not.toHaveBeenCalled();
 
@@ -523,7 +521,7 @@ describe ("Testing commentControl", (): void => {
     
         const ourSpy = jest.spyOn(console, 'log');
 
-        commentControl(title, author, message);
+        guideControl(title, author, message);
 
         expect(ourSpy).not.toHaveBeenCalled();
 
@@ -541,7 +539,7 @@ describe ("Testing commentControl", (): void => {
 
         const ourSpy = jest.spyOn(console, 'log');
 
-        const errorMessage = commentControl(title, author, message);
+        const errorMessage = guideControl(title, author, message);
 
         expect(errorMessage).toContain("Invalid title. Try again. Minimum: 4 characters, maximum: 30 characters.");
 
@@ -559,7 +557,7 @@ describe ("Testing commentControl", (): void => {
 
         const ourSpy = jest.spyOn(console, 'log');
 
-        const errorMessage = commentControl(title, author, message);
+        const errorMessage = guideControl(title, author, message);
 
         expect(errorMessage).toContain("Invalid author. Try again. Minimum: 1 character, maximum: 30 characters.");
 
@@ -577,7 +575,7 @@ describe ("Testing commentControl", (): void => {
 
         const ourSpy = jest.spyOn(console, 'log');
 
-        const errorMessage = commentControl(title, author, message);
+        const errorMessage = guideControl(title, author, message);
 
         expect(errorMessage).toContain("Invalid message. Try again. Minimum: 3 characters, maximum: 255 characters.");
 

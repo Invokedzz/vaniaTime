@@ -1,9 +1,5 @@
 import { Request, Response } from "express";
 
-import { Username } from "../controllers/verifyToken";
-
-import jwt from "jsonwebtoken";
-
 export function homeInit (request: Request, response: Response): void {
 
     response.render("homePage");
