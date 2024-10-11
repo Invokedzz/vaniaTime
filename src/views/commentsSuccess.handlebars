@@ -6,9 +6,16 @@
         
         <p class="register-link">The comment was created successfully</p>
 
-        <p class="register-link"><a href="/viewComments/{{id_guide}}">View comments</a></p>
+        <form action="/viewComments/{{id}}" method="POST">
+        
+       <input type="hidden" name="id" value="{{id}}">
+
+        </form>
+
+        <p class="register-link"><a href="/viewComments/{{id}}">View comments</a></p>
 
         <p class="register-link"><a href="/viewGuides/login">Return</a></p>
 
     </div>
+
 

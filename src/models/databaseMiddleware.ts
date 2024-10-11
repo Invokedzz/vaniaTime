@@ -341,15 +341,13 @@ export async function commentaryPost (request: Request, response: Response): Pro
 
     const message: string = request.body.message;
 
-    const id_guide: string = request.params.id;
+    const id: string = request.params.id;
 
     try {
 
-       const databaseElements = await database.query(`INSERT INTO metroidvania.comments (username, message, id_guide) VALUES ($1, $2, $3)`, [username, message, id_guide]);
+       await database.query(`INSERT INTO metroidvania.comments (username, message, id_guide) VALUES ($1, $2, $3)`, [username, message, id]);
 
-       const comments = databaseElements.rows[0];
-
-        response.render('commentsSuccess', { comments, id_guide });
+        response.render('commentsSuccess', { id });
 
     } catch (error) {
 

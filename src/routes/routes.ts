@@ -24,6 +24,8 @@ router.get('/createComment/:id', createCommentaryGet)
 
 router.get('/editGuide/:id', guideUpdateGet);
 
+router.get('/viewComments/:id', )
+
 router.post('/registeruser', registerMethod);
 
 router.post('/loginuser', loginMethod);
