@@ -315,9 +315,15 @@ export async function updateGuidesInfoPost (request: Request, response: Response
 
 export async function commentaryGet (request: Request, response: Response): Promise <void> {
 
+    const id: string = request.params.id;
+
     try {
 
-        response.render('createComments');
+        const getUser = await database.query(`SELECT * FROM metroidvania.guide WHERE id = $1`, [id]);
+
+        const username = getUser.rows[0].author;
+
+        response.render('createComments', { username });
 
     } catch (error) {
 
@@ -331,7 +337,15 @@ export async function commentaryGet (request: Request, response: Response): Prom
 
 export async function commentaryPost (request: Request, response: Response): Promise <void> {
 
+    const username: string = request.body.username;
+
+    const message: string = request.body.message;
+
+    const id_guide: string = request.params.id;
+
     try {
+
+        await database.query(`INSERT INTO metroidvania.comments (username, message, id_guide) VALUES ($1, $2, $3)`, [username, message, id_guide]);
 
     } catch (error) {
 
