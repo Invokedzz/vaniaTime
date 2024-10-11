@@ -23,6 +23,9 @@
                     <form action="/editGuide/{{id}}" method="GET">
                         <button class="edit">Edit</button>
                     </form>
+                    <form action="/createComment" method="GET">
+                        <button class="edit">Comment</button>
+                    </form>
                     <form action="/deleteGuide" method="POST">
                         <button class="erase" type="submit">Delete</button>
                         <input type="hidden" name="id" value="{{id}}">

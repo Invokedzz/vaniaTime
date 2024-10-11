@@ -312,3 +312,19 @@ export async function updateGuidesInfoPost (request: Request, response: Response
     };
 
 };
+
+export async function commentaryGet (request: Request, response: Response): Promise <void> {
+
+    try {
+
+        response.render('createComments');
+
+    } catch (error) {
+
+        console.error("Something went wrong", error);
+
+        throw new Error("Try again later");
+
+    };
+
+};
