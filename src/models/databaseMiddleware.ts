@@ -361,4 +361,18 @@ export async function commentaryPost (request: Request, response: Response): Pro
 
 export async function renderCommentsView (request: Request, response: Response): Promise <void> {
 
+    
+
+    try {
+
+
+
+    } catch (error) {
+
+        console.error("Something went wrong", error);
+
+        throw new Error("Try again later");
+
+    };
+
 };
