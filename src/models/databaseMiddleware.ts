@@ -358,3 +358,7 @@ export async function commentaryPost (request: Request, response: Response): Pro
     };
 
 };
+
+export async function renderCommentsView (request: Request, response: Response): Promise <void> {
+
+};

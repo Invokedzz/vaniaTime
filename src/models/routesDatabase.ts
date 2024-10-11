@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 
-import { registerPost, loginPost, userProfile, updateProfile, deleteProfile, createGuide, receiveGuidesInfo, guidesPreview, updateGuidesInfoGet, updateGuidesInfoPost, deleteAGuide, commentaryGet, commentaryPost } from "./databaseMiddleware";
+import { registerPost, loginPost, userProfile, updateProfile, deleteProfile, createGuide, receiveGuidesInfo, guidesPreview, updateGuidesInfoGet, updateGuidesInfoPost, deleteAGuide, commentaryGet, commentaryPost, renderCommentsView } from "./databaseMiddleware";
 
 import { homeInit, loginInit, registerInit, viewGuides, viewGuidesLogin } from "../controllers/routesControllers";
 
@@ -109,5 +109,11 @@ export const createCommentaryGet = async (request: Request, response: Response):
 export const createCommentaryPost = async (request: Request, response: Response): Promise <void> => {
 
     await commentaryPost(request, response);
+
+};
+
+export const viewComments = async (request: Request, response: Response): Promise <void> => {
+  
+    await renderCommentsView(request, response);
 
 };

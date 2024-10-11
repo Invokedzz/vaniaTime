@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import { registerMethod, loginMethod, homePage, registerPage, loginPage, viewMethod, createMethod, viewMethodLogin, methodProfile, updateProfileMethod, deleteProfileMethod, createGuideMethod, guideViewMethod, guideUpdateGet, guideUpdatePost, deleteShittyGuide, createCommentaryGet, createCommentaryPost } from '../models/routesDatabase';
+import { registerMethod, loginMethod, homePage, registerPage, loginPage, viewMethod, createMethod, viewMethodLogin, methodProfile, updateProfileMethod, deleteProfileMethod, createGuideMethod, guideViewMethod, guideUpdateGet, guideUpdatePost, deleteShittyGuide, createCommentaryGet, createCommentaryPost, viewComments } from '../models/routesDatabase';
 
 import { uploads } from '../controllers/uploadFiles';
 
@@ -24,7 +24,7 @@ router.get('/createComment/:id', createCommentaryGet)
 
 router.get('/editGuide/:id', guideUpdateGet);
 
-router.get('/viewComments/:id', )
+router.get('/viewComments/:id', viewComments);
 
 router.post('/registeruser', registerMethod);
 
