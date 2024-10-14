@@ -224,7 +224,11 @@ export async function receiveGuidesInfo (request: Request, response: Response): 
 
     try {
 
-        const result = await database.query(`SELECT * FROM metroidvania.guide`);
+        const searchStuff = request.query.search || '';
+
+        const result = await database.query(`SELECT * FROM metroidvania.guide WHERE title ILIKE $1`, [`%${searchStuff}%`]);
+
+        console.log(searchStuff)
 
         const guides = result.rows.map(guide => ({
 
@@ -233,7 +237,7 @@ export async function receiveGuidesInfo (request: Request, response: Response): 
 
         }));
 
-        response.render('viewGuideslogin', { guides });
+        response.render('viewGuideslogin', { guides, searchStuff });
 
     } catch (error) {
 

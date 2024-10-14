@@ -2,14 +2,22 @@
 
 <article>
     <div class="chatblock">
-        <input type="text" placeholder="Search..." class="search-input">
-        <button class="search-button">Search</button>
+        <form action="/viewGuides/login">
+        <input type="text" name="search" value="{{searchStuff}}" placeholder="Search guides...">
+        <button class="search-button" type="submit">Search</button>
+        </form>
     </div>
 </article>
 
 <article>
     <div class="chatblock">
         <h1>Guides:</h1>
+
+        {{#if searchStuff}}
+
+        <p>You're searching for: {{searchStuff}}</p>
+
+        {{/if}}
 
         {{#each guides}}
             <div class="structure-content">
