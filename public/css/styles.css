@@ -300,3 +300,7 @@ input[type="submit"]:hover {
 .erase:hover {
     background-color: rgb(203, 4, 4);
 }
+
+.msgSearcher {
+    text-align: center;
+}

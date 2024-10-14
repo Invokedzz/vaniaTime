@@ -228,8 +228,6 @@ export async function receiveGuidesInfo (request: Request, response: Response): 
 
         const result = await database.query(`SELECT * FROM metroidvania.guide WHERE title ILIKE $1`, [`%${searchStuff}%`]);
 
-        console.log(searchStuff)
-
         const guides = result.rows.map(guide => ({
 
             ...guide,
