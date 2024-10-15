@@ -198,7 +198,11 @@ export async function createGuide (request: Request, response: Response): Promis
 
     const image = request.file;
 
-    const creatorId = request.username?.id;
+    const token = request.cookies.token;
+
+    const user: Username = jwt.verify(token, 'secret') as Username;
+
+    const creatorId = user.id;
 
     try {
 
@@ -228,7 +232,11 @@ export async function receiveGuidesInfo (request: Request, response: Response): 
 
         const searchStuff = request.query.search || '';
 
-        const userId = request.username?.id;
+        const token = request.cookies.token;
+
+        const user: Username = jwt.verify(token, 'secret') as Username;
+
+        const userId = user.id;
 
         const result = await database.query(`SELECT * FROM metroidvania.guide WHERE title ILIKE $1`, [`%${searchStuff}%`]);
 
