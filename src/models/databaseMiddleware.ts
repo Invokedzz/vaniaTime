@@ -224,6 +224,12 @@ export async function receiveGuidesInfo (request: Request, response: Response): 
 
     try {
 
+        const token = request.cookies.token;
+
+        const user: Username = jwt.verify(token, 'secret') as Username;
+
+        const authorId = user.id;
+
         const searchStuff = request.query.search || '';
 
         const result = await database.query(`SELECT * FROM metroidvania.guide WHERE title ILIKE $1`, [`%${searchStuff}%`]);
@@ -232,10 +238,11 @@ export async function receiveGuidesInfo (request: Request, response: Response): 
 
             ...guide,
             image: guide.image ? guide.image.toString('base64'): null,
+            canEdit: guide.id !== authorId
 
         }));
 
-        response.render('viewGuideslogin', { guides, searchStuff });
+        response.render('viewGuideslogin', { guides, searchStuff, authorId });
 
     } catch (error) {
 
