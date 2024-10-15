@@ -198,13 +198,15 @@ export async function createGuide (request: Request, response: Response): Promis
 
     const image = request.file;
 
+    const creatorId = request.username?.id;
+
     try {
 
         const imagePath = image?.path;
 
         const imageAnalysis = fs.readFileSync(imagePath as string);
 
-        const result = await database.query(`INSERT INTO metroidvania.guide (title, author, message, image) VALUES ($1, $2, $3, $4)`, [title, author, message, imageAnalysis]);
+        const result = await database.query(`INSERT INTO metroidvania.guide (title, author, message, image, creator_id) VALUES ($1, $2, $3, $4, $5)`, [title, author, message, imageAnalysis, creatorId]);
 
         const guide = result.rows[0];
 
@@ -226,7 +228,7 @@ export async function receiveGuidesInfo (request: Request, response: Response): 
 
         const searchStuff = request.query.search || '';
 
-        const userId = request.session.id;
+        const userId = request.username?.id;
 
         const result = await database.query(`SELECT * FROM metroidvania.guide WHERE title ILIKE $1`, [`%${searchStuff}%`]);
 
@@ -234,6 +236,7 @@ export async function receiveGuidesInfo (request: Request, response: Response): 
 
             ...guide,
             image: guide.image ? guide.image.toString('base64'): null,
+            canEdit: guide.creator_id === userId
 
         }));
 
