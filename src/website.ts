@@ -38,10 +38,6 @@ export class startServer {
 
             max: 100,
 
-        //    standardHeaders: true,
-
-        //    legacyHeaders: false,
-
         });
 
         application.use(limiter);
