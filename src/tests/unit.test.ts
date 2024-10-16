@@ -2,11 +2,13 @@ import { Request, Response } from "express";
 
 import { homeInit, loginInit, registerInit, viewGuides, viewGuidesLogin } from "../controllers/routesControllers";
 
-import { renderCommentsView, commentaryPost, commentaryGet, updateGuidesInfoPost, updateGuidesInfoGet, deleteAGuide } from "src/models/databaseMiddleware";
+import { renderCommentsView, commentaryPost, commentaryGet, updateGuidesInfoPost, updateGuidesInfoGet, deleteAGuide } from "../models/databaseMiddleware";
 
 import { validateRegister, validateLogin, validateGuide, validateTopic, validUpdate, validateCommentary } from "../controllers/validatorsHeaders";
 
 import { loginControl, registerControl, topicControl, guideControl, commentaryControl } from "../controllers/validatorsControl";
+
+import { database } from "../db/database";
 
 describe ("Handling with the renders", (): void => {
 
@@ -720,6 +722,54 @@ describe ("validateCommentary function test", (): void => {
 });
 
 describe ("rendercommentsview test", (): void => {
+
+    let Request: Partial <Request>;
+
+    let Response: Partial <Response>;
+
+    const mockQuery = jest.fn();
+
+    beforeEach((): void => {
+
+        Request = {
+
+            params: {
+
+                id: '1',
+
+            },
+
+        };
+
+        Response = {
+
+            render: jest.fn(),
+
+        };
+
+        (database.query as jest.Mock) = mockQuery;
+
+    });
+
+    afterEach((): void => {
+
+        jest.clearAllMocks();
+
+    });
+
+    it ("Should return the proper values", async (): Promise <void> => {
+
+        const mockTests = [{id: 1, username: 'test', message: 'test'}];
+
+        mockQuery.mockResolvedValueOnce({ rows: mockTests });
+
+        await renderCommentsView(Request as Request, Response as Response);
+
+        expect(mockQuery).toHaveBeenCalledWith('SELECT * FROM metroidvania.comments WHERE id_guide = $1', ['1']);
+
+        expect(Response.render).toHaveBeenCalledWith('viewComments', { getElements: mockTests });
+
+    });
 
 });
 
