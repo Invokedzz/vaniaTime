@@ -893,6 +893,64 @@ describe("updateGuidesGet test", (): void => {
 
 describe("updateGuidesPost test", (): void => {
 
+    let Request: Partial <Request>;
+
+    let Response: Partial <Response>;
+
+    const mockQuery = jest.fn();
+
+    beforeEach((): void => {
+
+        Request = {
+
+            params: {
+
+                id: '1',
+
+            },
+
+            body: {
+
+                title: "something funny",
+
+                author: "someone boring enough",
+
+                message: "i love coffee",
+
+            },
+
+        };
+
+        Response = {
+
+            render: jest.fn(),
+
+        };
+
+        (database.query as jest.Mock) = mockQuery;
+
+    });
+
+    afterEach((): void => {
+
+        jest.clearAllMocks();
+
+    });
+
+    it ("Should return updateGuidesPost proper values", async (): Promise <void> => {
+
+        const mockTests = [{id: 1, title: 'test', author: 'test', message: 'test'}];
+
+        mockQuery.mockResolvedValueOnce({ rows: mockTests });
+
+        await updateGuidesInfoPost(Request as Request, Response as Response);
+
+        expect(mockQuery).toHaveBeenCalledWith('UPDATE metroidvania.guide SET title = $1, author = $2, message = $3 WHERE id = $4', ['something funny', 'someone boring enough', 'i love coffee', '1']);
+
+        expect(Response.render).toHaveBeenCalledWith('editGuideSuccess');
+
+    });
+
 });
 
 describe("deleteGuide test", (): void => {
