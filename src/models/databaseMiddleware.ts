@@ -4,6 +4,8 @@ import { database } from "../db/database";
 
 import { validateRegister, validateLogin } from "../controllers/validatorsHeaders";
 
+import { loginControl, registerControl, topicControl, guideControl, commentaryControl } from "../controllers/validatorsControl";
+
 import { Username } from "../controllers/verifyToken";
 
 import fs from "fs";
@@ -22,6 +24,8 @@ export async function registerPost (request: Request, response: Response): Promi
     const password: string = request.body.password;
 
     validateRegister(username, email, password);
+
+    registerControl(username, email, password);
 
     try {
 
@@ -52,6 +56,8 @@ export async function loginPost (request: Request, response: Response): Promise 
     const password: string = request.body.password;
 
     validateLogin(email, password);
+
+    loginControl(email, password);
 
     try {
 
@@ -203,6 +209,10 @@ export async function createGuide (request: Request, response: Response): Promis
     const user: Username = jwt.verify(token, 'secret') as Username;
 
     const creatorId = user.id;
+
+    topicControl(title, author, message);
+
+    guideControl(title, author, message);
 
     try {
 
@@ -357,6 +367,8 @@ export async function commentaryPost (request: Request, response: Response): Pro
     const message: string = request.body.message;
 
     const id: string = request.params.id;
+
+    commentaryControl(username, message);
 
     try {
 
