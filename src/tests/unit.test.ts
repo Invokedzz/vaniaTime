@@ -775,6 +775,56 @@ describe ("rendercommentsview test", (): void => {
 
 describe("commentaryGet test", (): void => {
 
+    let Request: Partial <Request>;
+
+    let Response: Partial <Response>;
+
+    const mockQuery = jest.fn();
+
+    beforeEach((): void => {
+
+        Request = {
+
+            params: {
+
+                id: '1',
+
+            },
+
+        };
+
+        Response = {
+
+            render: jest.fn(),
+
+        };
+
+        (database.query as jest.Mock) = mockQuery;
+
+    });
+
+    afterEach((): void => {
+
+        jest.clearAllMocks();
+
+    });
+
+    it ("Should return commentaryGet proper values", async (): Promise <void> => {
+
+        const id = '1';
+
+        const mockUser = { author: 'Test User' };
+
+        mockQuery.mockResolvedValueOnce({ rows: [mockUser] });
+
+        await commentaryGet(Request as Request, Response as Response);
+
+        expect(mockQuery).toHaveBeenCalledWith(`SELECT * FROM metroidvania.guide WHERE id = $1`, [id]);
+
+        expect(Response.render).toHaveBeenCalledWith('createComments', { username: 'Test User', id });
+
+    });
+
 });
 
 describe("commentaryPost test", (): void => {
