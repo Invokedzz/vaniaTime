@@ -779,6 +779,62 @@ describe("commentaryGet test", (): void => {
 
 describe("commentaryPost test", (): void => {
 
+    let Request: Partial <Request>;
+
+    let Response: Partial <Response>;
+
+    const mockQuery = jest.fn();
+
+    beforeEach((): void => {
+
+        Request = {
+
+            params: {
+
+                id: '1',
+
+            },
+
+            body: {
+
+                username: 'testing',
+
+                message: 'i love waffles',
+
+            },
+
+        };
+
+        Response = {
+
+            render: jest.fn(),
+
+        };
+
+        (database.query as jest.Mock) = mockQuery;
+
+    });
+
+    afterEach((): void => {
+
+        jest.clearAllMocks();
+
+    });
+
+    it ("Should return commentaryPost proper values", async (): Promise <void> => {
+
+        const mockTests = [{id: 1, username: 'test', message: 'test'}];
+
+        mockQuery.mockResolvedValueOnce({ rows: mockTests });
+
+        await commentaryPost(Request as Request, Response as Response);
+
+        expect(mockQuery).toHaveBeenCalledWith('INSERT INTO metroidvania.comments (username, message, id_guide) VALUES ($1, $2, $3)', ['testing', 'i love waffles', '1']);
+
+        expect(Response.render).toHaveBeenCalledWith('commentsSuccess', { id: '1' });
+
+    });
+
 });
 
 describe("updateGuidesGet test", (): void => {
