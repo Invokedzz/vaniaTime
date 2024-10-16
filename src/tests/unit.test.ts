@@ -2,6 +2,8 @@ import { Request, Response } from "express";
 
 import { homeInit, loginInit, registerInit, viewGuides, viewGuidesLogin } from "../controllers/routesControllers";
 
+import { renderCommentsView, commentaryPost, commentaryGet, updateGuidesInfoPost, updateGuidesInfoGet, deleteAGuide } from "src/models/databaseMiddleware";
+
 import { validateRegister, validateLogin, validateGuide, validateTopic, validUpdate, validateCommentary } from "../controllers/validatorsHeaders";
 
 import { loginControl, registerControl, topicControl, guideControl, commentaryControl } from "../controllers/validatorsControl";
@@ -714,5 +716,29 @@ describe ("validateCommentary function test", (): void => {
         expect(errorMsg).toContain("Invalid message. Try again.");
 
     });
+
+});
+
+describe ("rendercommentsview test", (): void => {
+
+});
+
+describe("commentaryGet test", (): void => {
+
+});
+
+describe("commentaryPost test", (): void => {
+
+});
+
+describe("updateGuidesGet test", (): void => {
+
+});
+
+describe("updateGuidesPost test", (): void => {
+
+});
+
+describe("deleteGuide test", (): void => {
 
 });
