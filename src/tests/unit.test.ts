@@ -889,6 +889,54 @@ describe("commentaryPost test", (): void => {
 
 describe("updateGuidesGet test", (): void => {
 
+    let Request: Partial <Request>;
+
+    let Response: Partial <Response>;
+
+    const mockQuery = jest.fn();
+
+    beforeEach((): void => {
+
+        Request = {
+
+            params: {
+
+                id: '1',
+
+            },
+
+        };
+
+        Response = {
+
+            render: jest.fn(),
+
+        };
+
+        (database.query as jest.Mock) = mockQuery;
+
+    });
+
+    afterEach((): void => {
+
+        jest.clearAllMocks();
+
+    });
+
+    it ("Should return updateGuidesGet proper values", async (): Promise <void> => {
+
+        const mockTests = [{id: 1, title: 'test', author: 'test', message: 'test'}];
+
+        mockQuery.mockResolvedValueOnce({ rows: mockTests });
+
+        await updateGuidesInfoGet(Request as Request, Response as Response);
+
+        expect(mockQuery).toHaveBeenCalledWith('SELECT * FROM metroidvania.guide WHERE id = $1', ['1']);
+
+        expect(Response.render).toHaveBeenCalledWith('editingGuide', { selectTopic: mockTests });
+
+    });
+
 });
 
 describe("updateGuidesPost test", (): void => {
