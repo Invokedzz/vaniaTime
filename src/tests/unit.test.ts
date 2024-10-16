@@ -1003,4 +1003,52 @@ describe("updateGuidesPost test", (): void => {
 
 describe("deleteGuide test", (): void => {
 
+    let Request: Partial <Request>;
+
+    let Response: Partial <Response>;
+
+    const mockQuery = jest.fn();
+
+    beforeEach((): void => {
+
+        Request = {
+
+            body: {
+
+                id: '1',
+
+            },
+
+        };
+
+        Response = {
+
+            render: jest.fn(),
+
+        };
+
+        (database.query as jest.Mock) = mockQuery;
+
+    });
+
+    afterEach((): void => {
+
+        jest.clearAllMocks();
+
+    });
+
+    it ("Should return deleteGuide proper values", async (): Promise <void> => {
+
+        const mockTests = [{id: 1, title: 'test', author: 'test', message: 'test'}];
+
+        mockQuery.mockResolvedValueOnce({ rows: mockTests });
+
+        await deleteAGuide(Request as Request, Response as Response);
+
+        expect(mockQuery).toHaveBeenCalledWith('DELETE FROM metroidvania.guide WHERE id = $1', ['1']);
+
+        expect(Response.render).toHaveBeenCalledWith('deleteGuide');
+
+    });
+
 });
