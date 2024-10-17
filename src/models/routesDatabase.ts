@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { Request, Response, NextFunction } from "express";
 
 import { registerPost, loginPost, userProfile, updateProfile, deleteProfile, createGuide, receiveGuidesInfo, guidesPreview, updateGuidesInfoGet, updateGuidesInfoPost, deleteAGuide, commentaryGet, commentaryPost, renderCommentsView } from "./databaseMiddleware";
 
@@ -22,9 +22,11 @@ export const loginPage = (request: Request, response: Response): void => {
 
 };
 
-export const registerMethod = async (request: Request, response: Response): Promise <void> => {
+export const registerMethod = async (request: Request, response: Response, next: NextFunction): Promise <void> => {
 
     await registerPost(request, response);
+
+    next();
 
 };
 
