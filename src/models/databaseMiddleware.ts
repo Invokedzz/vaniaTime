@@ -37,10 +37,18 @@ export async function registerPost (request: Request, response: Response): Promi
 
         await database.query(`INSERT INTO metroidvania.users (username, email, password) VALUES ($1, $2, $3)`, [username, email, passwordHash]);
 
-        response.redirect('/login');
+        //response.redirect('/login');
+
+        response.status(201).json({
+
+            message: "Account created successfully!",
+
+            success: true,
+
+        });
 
     } catch (error) {
-
+ 
         console.error("Something went wrong", error);
 
         throw new Error("Try again later");
