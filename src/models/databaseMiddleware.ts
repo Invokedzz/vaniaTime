@@ -39,14 +39,6 @@ export async function registerPost (request: Request, response: Response): Promi
 
         response.redirect('/login');
 
-        response.status(201).json({
-
-            message: "Account created successfully!",
-
-            success: true,
-
-        });
-
     } catch (error) {
  
         console.error("Something went wrong", error);
