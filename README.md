@@ -1,18 +1,19 @@
-# vaniaTime
- A project to help new players into MetroidVania!
+# VaniaTime
 
- In this project, I created a social media related to MetroidVania genre. 
- Where players can talk about their favorite games, post guides and help each other.
+VaniaTime é uma rede social para fãs de jogos do gênero Metroidvania, desenvolvida para conectar jogadores, compartilhar experiências e discutir sobre jogos como *Castlevania*, *Metroid*, *Hollow Knight* e muitos outros. A aplicação foi construída utilizando TypeScript, PostgreSQL, Jest e Handlebars.
 
- For this project, I used: TypeScript, PostgreSQL, Docker, Jest, Handlebars and CSS.
- I also used some libraries, like: Express-Session, JsonWebToken, Express-Validator, etc.
+## 🚀 Tecnologias Utilizadas
 
- The users can: create an account, edit, delete, create their own guides (with images) and comment.
- With this project, I could learn a lot about PostgreSQL and image management on the database. 
+- **TypeScript**: Para garantir um código tipado e de fácil manutenção.
+- **PostgreSQL**: Banco de dados relacional para armazenar informações de usuários, postagens e interações.
+- **Jest**: Framework de testes para garantir a qualidade e estabilidade do código.
+- **Handlebars**: Motor de templates para renderizar as views da aplicação.
 
- If, for some reason, you want to test the project yourself; you can download it, and use the following commands:
+## 📸 Funcionalidades
 
- - npm i
- - npm run dev ./src/index.ts
+- **Cadastro de usuários**: Os jogadores podem se cadastrar na plataforma com nome, e-mail e senha.
+- **Feed de postagens**: Exibição de postagens criadas pelos usuários, comentários e mais.
+- **Perfil personalizado**: Cada jogador tem seu perfil com informações pessoais.
+- **Interação entre usuários**: Comentários e publicação de imagens!
+- **Busca por tópicos**: Sistema de busca para encontrar jogos e tópicos discutidos dentro do website.
 
-After that, you're good to go. Have fun!
